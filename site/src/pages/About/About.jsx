@@ -1,4 +1,5 @@
 import Reveal from '../../components/Reveal/Reveal'
+import { FOUNDER_PHOTO } from '../../data/site'
 
 const VALUES = [
   { tag: 'Transparency', title: 'Real prices, real timelines', text: 'No "contact us for pricing" games. You see ranges upfront and a written scope before you pay anything.' },
@@ -40,7 +41,7 @@ export default function About() {
             style={{ maxWidth: '520px', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: '24px', padding: '24px' }}
           >
             <img
-              src="/assets/founder.png"
+              src={FOUNDER_PHOTO}
               alt="Aarav Bhateja"
               style={{ width: '140px', height: '140px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '2px solid var(--line)' }}
             />

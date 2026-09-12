@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { waLink } from '../../data/site'
+import { waLink, LOGO_MARK } from '../../data/site'
 
 const LINKS = [
   { to: '/', label: 'Home', end: true },
@@ -26,7 +26,7 @@ export default function Header() {
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div className="wrap nav-row">
         <NavLink className="brand" to="/">
-          <img src="/assets/logo-mark.png" alt="InfusioTech" className="mark" />
+          <img src={LOGO_MARK} alt="InfusioTech" className="mark" />
           InfusioTech
         </NavLink>
         <nav className={`primary-nav${open ? ' is-open' : ''}`}>

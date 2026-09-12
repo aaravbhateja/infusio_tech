@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { EMAIL, waLink } from '../../data/site'
+import { EMAIL, waLink, LOGO_MARK } from '../../data/site'
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link className="brand" to="/">
-              <img src="/assets/logo-mark.png" alt="InfusioTech" className="mark" />
+              <img src={LOGO_MARK} alt="InfusioTech" className="mark" />
               InfusioTech
             </Link>
             <p>Websites, apps, and automation for local businesses — starting in Jaipur.</p>
