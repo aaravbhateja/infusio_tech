@@ -166,9 +166,17 @@ nav.primary-nav a.is-active{
 .nav-cta:hover{ text-decoration:none; filter: brightness(1.08); transform: translateY(-1px); }
 .nav-toggle{
   display:none; background:none; border:1px solid var(--line); border-radius:8px;
-  width: 40px; height: 40px; align-items:center; justify-content:center;
+  width: 44px; height: 44px; align-items:center; justify-content:center;
   color: var(--ink); cursor:pointer;
 }
+.skip-link{
+  position: fixed; top: -100px; left: 12px; z-index: 1000;
+  background: var(--accent); color: var(--accent-ink);
+  padding: 12px 18px; border-radius: 8px;
+  font-weight: 600; font-size: 14px;
+  transition: top .15s ease;
+}
+.skip-link:focus{ top: 12px; text-decoration: none; }
 .nav-links-group{ display:flex; align-items:center; gap:28px; }
 
 @media (max-width: 860px){
@@ -349,11 +357,23 @@ nav.primary-nav a.is-active{
   display:flex; flex-direction:column; gap: 12px;
   transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
+a.service-card{ cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .service-card:hover{
+  text-decoration: none;
   transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--accent2) 45%, var(--line));
   box-shadow: var(--shadow-lg);
 }
+.service-card .card-link{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top: auto; padding-top: 6px;
+  font-size: 13px; font-weight:600; color: var(--accent2);
+  opacity: 0; transform: translateX(-4px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.service-card:hover .card-link{ opacity: 1; transform: translateX(0); }
+.service-card .card-link svg{ transition: transform .18s ease; }
+.service-card:hover .card-link svg{ transform: translateX(2px); }
 .service-card .icon{
   width: 42px; height:42px; border-radius: 10px;
   background: var(--accent-soft); color: var(--accent);
@@ -361,7 +381,8 @@ nav.primary-nav a.is-active{
   transition: transform .18s ease;
 }
 .service-card:hover .icon{ transform: scale(1.08) rotate(-4deg); }
-.service-card h3{ font-size: 18px; }
+.service-card h3{ font-size: 18px; color: var(--ink); }
+a.service-card:hover h3{ color: var(--accent2); }
 .service-card p{ color: var(--muted); font-size: 14.5px; }
 .service-card .tag{
   font-family:'IBM Plex Mono',monospace; font-size: 11px; letter-spacing:.08em; text-transform:uppercase;
@@ -394,6 +415,12 @@ nav.primary-nav a.is-active{
 }
 .segment:hover{ background: color-mix(in srgb, var(--accent2-soft) 55%, transparent); }
 .segment:hover::before{ width:100%; }
+.segment-icon{
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--accent2-soft); color: var(--accent2);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom: 12px;
+}
 .segment .tag{ font-family:'IBM Plex Mono',monospace; font-size: 11px; letter-spacing:.08em; text-transform:uppercase; color: var(--accent2); }
 .segment h4{ margin: 8px 0 6px; font-size: 16.5px; font-weight:600; font-family:'Fraunces',serif; }
 .segment p{ margin:0; font-size: 13.5px; color: var(--muted); }
@@ -409,43 +436,71 @@ nav.primary-nav a.is-active{
   .segment:first-child{ border-top:none; }
 }
 
-/* ---------------- Package table ---------------- */
-.pkg-table-scroll{ overflow-x: auto; }
-table.pkg{
-  width: 100%; border-collapse: collapse; min-width: 640px;
-  background: var(--bg-raised); border:1px solid var(--line); border-radius: 12px;
-  overflow:hidden; box-shadow: var(--shadow);
+/* ---------------- Package cards ----------------
+   Replaces a horizontal-scrolling comparison table — that pattern is
+   flagged High severity under Responsive/Horizontal-Scroll in the
+   ui-ux-pro-max guidelines, since it hides content on mobile behind a
+   scroll gesture users often don't discover. Cards reflow naturally. */
+.pkg-cards{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 18px; align-items: stretch;
 }
-table.pkg th, table.pkg td{ text-align:left; padding: 15px 18px; border-bottom: 1px solid var(--line); vertical-align: top; font-size:14px; }
-table.pkg thead th{
-  font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
-  color: var(--muted); background: var(--bg-sunk); font-weight:500;
+.pkg-card{
+  position: relative;
+  background: var(--bg-raised); border: 1px solid var(--line); border-radius: 16px;
+  padding: 26px 24px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-table.pkg tbody tr:last-child td{ border-bottom:none; }
-table.pkg tbody tr{ transition: background .15s ease; }
-table.pkg tbody tr:not(.featured):hover{ background: var(--bg-sunk); }
-table.pkg td.pname{ font-weight:600; font-family:'Fraunces',serif; font-size:16.5px; position:relative; }
-table.pkg td.price{ font-family:'IBM Plex Mono',monospace; font-variant-numeric: tabular-nums; color: var(--accent); white-space:nowrap; }
-table.pkg td.who{ color: var(--muted); }
-tr.featured td{ background: var(--accent-soft); }
-tr.featured td.pname::after{
-  content: "Most picked";
-  display: inline-block;
-  margin-left: 10px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+.pkg-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.pkg-card.featured{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), var(--shadow-lg);
+}
+.pkg-badge{
+  position: absolute; top: -12px; left: 24px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase;
   color: var(--accent-ink); background: var(--accent);
-  padding: 2px 8px; border-radius: 999px;
-  vertical-align: middle;
+  padding: 4px 10px; border-radius: 999px;
 }
-.pkg-note{ margin-top:14px; font-size:13.5px; color: var(--muted); }
+.pkg-card h3{ font-size: 20px; margin-top: 4px; }
+.pkg-who{ font-size: 13.5px; color: var(--muted); min-height: 2.6em; }
+.pkg-price{ display:flex; align-items:baseline; gap:8px; padding-block: 4px 6px; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); padding-top: 14px; padding-bottom: 14px; }
+.pkg-unit{ font-family:'IBM Plex Mono',monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.pkg-amount{ font-family:'IBM Plex Mono',monospace; font-size: 22px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+.pkg-features{ display:flex; flex-direction:column; gap: 10px; flex-grow: 1; }
+.pkg-features li{ list-style:none; display:flex; align-items:flex-start; gap: 8px; font-size: 14px; }
+.pkg-features li svg{ color: var(--accent2); flex-shrink: 0; margin-top: 2px; }
+.pkg-card .btn{ justify-content: center; margin-top: 4px; }
+.pkg-note{ margin-top:16px; font-size:13.5px; color: var(--muted); }
+
+/* ---------------- Standalone services list ---------------- */
+.standalone-list{
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg-raised); overflow: hidden;
+}
+.standalone-row{
+  display:flex; align-items:center; justify-content: space-between; gap: 16px;
+  padding: 16px 20px;
+  font-size: 14.5px;
+  transition: background .15s ease;
+}
+.standalone-row + .standalone-row{ border-top: 1px solid var(--line); }
+.standalone-row:hover{ background: var(--bg-sunk); }
+.standalone-row .price{
+  font-family:'IBM Plex Mono',monospace; font-variant-numeric: tabular-nums;
+  color: var(--accent); white-space: nowrap; font-weight: 600;
+}
 
 /* ---------------- Process timeline ---------------- */
-.timeline{ display:flex; flex-direction:column; border-left:2px solid var(--line); margin-left:6px; }
-.phase{ position:relative; padding: 4px 0 30px 30px; }
-.phase::before{
-  content:""; position:absolute; left:-7px; top:6px; width:12px; height:12px; border-radius:50%;
-  background: var(--bg); border: 2px solid var(--accent);
+.timeline{ display:flex; flex-direction:column; border-left:2px solid var(--line); margin-left:15px; }
+.phase{ position:relative; padding: 0 0 34px 34px; }
+.phase-icon{
+  position:absolute; left:-16px; top:-2px;
+  width:30px; height:30px; border-radius:50%;
+  background: var(--bg-raised); border: 2px solid var(--accent);
+  color: var(--accent);
+  display:flex; align-items:center; justify-content:center;
 }
 .phase:last-child{ padding-bottom:4px; }
 .phase .ph-label{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color: var(--accent); }
@@ -474,6 +529,25 @@ tr.featured td.pname::after{
 }
 .field textarea{ resize: vertical; min-height: 100px; }
 .field input:focus, .field select:focus, .field textarea:focus{ border-color: var(--accent2); }
+.field input.has-error, .field select.has-error, .field textarea.has-error{
+  border-color: #DC2626;
+}
+.field-error{
+  font-size: 13px; color: #DC2626; margin-top: -2px;
+  display:flex; align-items:center; gap:6px;
+}
+.form-error-summary{
+  background: color-mix(in srgb, #DC2626 8%, var(--bg-raised));
+  border: 1px solid color-mix(in srgb, #DC2626 35%, var(--line));
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  max-width: 520px;
+}
+.form-error-summary h3{ font-size: 15px; color: #DC2626; font-family: 'Source Sans 3', sans-serif; }
+.form-error-summary ul{ margin-top: 8px; display:flex; flex-direction:column; gap: 4px; padding-left: 18px; }
+.form-error-summary li{ list-style: disc; font-size: 13.5px; }
+.form-error-summary a{ color: #DC2626; text-decoration: underline; }
 
 /* ---------------- Contact cards ---------------- */
 .contact-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; }
@@ -483,6 +557,12 @@ tr.featured td.pname::after{
   transition: border-color .18s ease, transform .18s ease;
 }
 .contact-card:hover{ border-color: color-mix(in srgb, var(--accent2) 40%, var(--line)); transform: translateY(-2px); }
+.contact-icon{
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--accent2-soft); color: var(--accent2);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom: 2px;
+}
 .contact-card .tag{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color: var(--accent2); }
 .contact-card a.value{ font-family:'Fraunces',serif; font-size: 18px; color: var(--ink); }
 .contact-card a.value:hover{ color: var(--accent2); }
@@ -536,7 +616,21 @@ tr.featured td.pname::after{
 }
 
 /* ---------------- Page header (inner pages) ---------------- */
-.page-header{ padding-block: 44px 40px; border-bottom: 1px solid var(--line); }
+.page-header{
+  padding-block: 52px 44px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before{
+  content:"";
+  position:absolute; inset:0; z-index:0;
+  background-image:
+    radial-gradient(480px 260px at 92% -20%, color-mix(in srgb, var(--aurora-1) 13%, transparent), transparent 70%),
+    radial-gradient(420px 240px at -6% 120%, color-mix(in srgb, var(--aurora-3) 11%, transparent), transparent 70%);
+  pointer-events:none;
+}
+.page-header .wrap{ position:relative; z-index:1; }
 .page-header h1{ font-size: clamp(30px,4vw,42px); margin-top: 12px; }
 .page-header p{ color: var(--muted); font-size: 17px; max-width: 60ch; margin-top: 14px; }
 

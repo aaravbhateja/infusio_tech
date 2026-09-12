@@ -1,13 +1,29 @@
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'motion/react'
+import { Check } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
 import { waLink } from '../../data/site'
 
 const PACKAGES = [
-  { name: 'Starter Presence', includes: 'Website (5–6 pages) · Google Business setup · WhatsApp auto-reply', who: 'Very small businesses going digital for the first time', price: '₹15,000' },
-  { name: 'Growth', includes: 'Everything in Starter · social media management & content calendar · WhatsApp / calling automation', who: 'Businesses that want a steady lead flow, not just a website', price: '₹35,000', featured: true },
-  { name: 'Full Stack', includes: 'Custom web or mobile app · workflow automations · paid social & growth strategy', who: 'Established businesses ready to scale', price: '₹75,000+' },
-  { name: 'Custom', includes: 'Bespoke builds — full automation suites, multi-location chains, custom software', who: 'Larger local businesses with specific needs', price: 'Scoped on a call' },
+  {
+    name: 'Starter Presence', price: '₹15,000', unit: 'starting at',
+    who: 'Very small businesses going digital for the first time',
+    features: ['Website (5–6 pages)', 'Google Business setup', 'WhatsApp auto-reply'],
+  },
+  {
+    name: 'Growth', price: '₹35,000', unit: 'starting at', featured: true,
+    who: 'Businesses that want a steady lead flow, not just a website',
+    features: ['Everything in Starter', 'Social media management & content calendar', 'WhatsApp / calling automation'],
+  },
+  {
+    name: 'Full Stack', price: '₹75,000+', unit: 'starting at',
+    who: 'Established businesses ready to scale',
+    features: ['Custom web or mobile app', 'Workflow automations', 'Paid social & growth strategy'],
+  },
+  {
+    name: 'Custom', price: 'Scoped on a call', unit: '',
+    who: 'Larger local businesses with specific needs',
+    features: ['Full automation suites', 'Multi-location chains', 'Custom software'],
+  },
 ]
 
 const STANDALONE = [
@@ -15,32 +31,9 @@ const STANDALONE = [
   { name: 'Mobile app', price: '₹45,000' },
   { name: 'WhatsApp automation', price: '₹6,000' },
   { name: 'Calling automation', price: '₹5,000' },
-  { name: 'Social media management', price: '₹8,000 / month' },
+  { name: 'Social media management', price: '₹8,000 / mo' },
   { name: 'Social growth strategy', price: '₹5,000' },
 ]
-
-function TableRows({ rows }) {
-  const shouldReduceMotion = useReducedMotion()
-  return rows.map((row, i) => {
-    const RowTag = shouldReduceMotion ? 'tr' : motion.tr
-    const motionProps = shouldReduceMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 18 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, margin: '0px 0px -10% 0px' },
-          transition: { duration: 0.5, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] },
-        }
-    return (
-      <RowTag className={row.featured ? 'featured' : undefined} key={row.name} {...motionProps}>
-        <td className="pname">{row.name}</td>
-        <td>{row.includes}</td>
-        <td className="who">{row.who}</td>
-        <td className="price">{row.price}</td>
-      </RowTag>
-    )
-  })
-}
 
 export default function Pricing() {
   return (
@@ -55,15 +48,36 @@ export default function Pricing() {
 
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="wrap">
-          <div className="pkg-table-scroll">
-            <table className="pkg">
-              <thead>
-                <tr><th>Package</th><th>What's included</th><th>Best for</th><th>Starting at</th></tr>
-              </thead>
-              <tbody>
-                <TableRows rows={PACKAGES} />
-              </tbody>
-            </table>
+          <div className="pkg-cards">
+            {PACKAGES.map((p, i) => (
+              <Reveal
+                as="div"
+                key={p.name}
+                delay={i * 0.06}
+                className={`pkg-card${p.featured ? ' featured' : ''}`}
+              >
+                {p.featured && <span className="pkg-badge">Most picked</span>}
+                <h3>{p.name}</h3>
+                <p className="pkg-who">{p.who}</p>
+                <div className="pkg-price">
+                  {p.unit && <span className="pkg-unit">{p.unit}</span>}
+                  <span className="pkg-amount">{p.price}</span>
+                </div>
+                <ul className="pkg-features">
+                  {p.features.map((f) => (
+                    <li key={f}><Check size={16} strokeWidth={2.25} /><span>{f}</span></li>
+                  ))}
+                </ul>
+                <a
+                  className={`btn ${p.featured ? 'btn-accent' : 'btn-ghost'}`}
+                  href={waLink(`Hi InfusioTech, I'm interested in the ${p.name} package`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ask about {p.name}
+                </a>
+              </Reveal>
+            ))}
           </div>
           <p className="pkg-note">Prices are starting points for typical Jaipur SMB scopes and can move based on pages, integrations, and content needs — every quote is confirmed before work begins, in writing.</p>
         </div>
@@ -76,18 +90,14 @@ export default function Pricing() {
             <h2>Standalone services</h2>
             <p>Only need one thing? Every service on the <Link to="/services">Services page</Link> is available on its own — typical standalone starting prices below.</p>
           </Reveal>
-          <div className="pkg-table-scroll">
-            <table className="pkg">
-              <thead>
-                <tr><th>Service</th><th>Starting at</th></tr>
-              </thead>
-              <tbody>
-                {STANDALONE.map((s) => (
-                  <tr key={s.name}><td className="pname">{s.name}</td><td className="price">{s.price}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <Reveal as="div" className="standalone-list">
+            {STANDALONE.map((s) => (
+              <div className="standalone-row" key={s.name}>
+                <span>{s.name}</span>
+                <span className="price">{s.price}</span>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </section>
 

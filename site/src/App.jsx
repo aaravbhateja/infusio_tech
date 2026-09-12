@@ -22,8 +22,9 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Header />
-      <main>
+      <main id="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
