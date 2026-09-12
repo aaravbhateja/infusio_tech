@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharma Electronics — Jaipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F4F6FA; --bg-raised:#FFFFFF; --ink:#101828; --muted:#5B6472; --line:#DEE3EC;
+  --accent:#1D5FE0; --accent-ink:#fff; --amber:#E08A2C; --amber-soft:#FCEEDB;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --bg-raised:#131C2E; --ink:#E7ECF6; --muted:#8D98AD; --line:#22304A;
+    --accent:#5E93F0; --accent-ink:#0B1220; --amber:#F0A64B; --amber-soft:#2C2013;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --bg-raised:#131C2E; --ink:#E7ECF6; --muted:#8D98AD; --line:#22304A;
+  --accent:#5E93F0; --accent-ink:#0B1220; --amber:#F0A64B; --amber-soft:#2C2013;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.6;}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif; font-weight:700; text-wrap:balance; margin:0;}
+.wrap{max-width:1120px; margin-inline:auto; padding-inline:24px;}
+.demo-banner{background:var(--ink); color:var(--bg); text-align:center; padding:10px 16px; font-size:13px; font-family:'IBM Plex Mono',monospace;}
+.demo-banner a{color:var(--amber);}
+header{padding-block:20px; border-bottom:1px solid var(--line); position:sticky; top:0; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(8px); z-index:5;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+.brand{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; color:var(--ink); text-decoration:none;}
+nav{display:flex; gap:22px; font-size:14px;}
+nav a{color:var(--ink); text-decoration:none;}
+nav a:hover{color:var(--accent);}
+.ask-btn{background:var(--accent); color:var(--accent-ink); padding:9px 18px; border-radius:8px; font-weight:600; font-size:14px; text-decoration:none; white-space:nowrap;}
+.hero{padding-block:60px 50px; border-bottom:1px solid var(--line);}
+.hero .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber);}
+.hero h1{font-size:clamp(30px,4vw,46px); margin-top:12px; line-height:1.12; max-width:18ch;}
+.hero p{color:var(--muted); font-size:16.5px; max-width:54ch; margin-top:16px;}
+.hero-ctas{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:8px; font-weight:600; font-size:14.5px; text-decoration:none;}
+.btn-accent{background:var(--accent); color:var(--accent-ink);}
+.btn-ghost{border:1px solid var(--line); color:var(--ink);}
+.section{padding-block:50px; border-bottom:1px solid var(--line);}
+.section:last-of-type{border-bottom:none;}
+.section-head{max-width:60ch; margin-bottom:30px;}
+.section-head .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber);}
+.section-head h2{font-size:clamp(22px,2.8vw,30px); margin-top:8px;}
+.prod-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+.prod{background:var(--bg-raised); border:1px solid var(--line); border-radius:12px; padding:18px;}
+.prod .stock{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent); padding:3px 8px; border-radius:999px; display:inline-block;}
+.prod h4{font-size:16px; margin-top:10px;}
+.prod p{font-size:13px; color:var(--muted); margin-top:4px;}
+.prod .price{font-family:'IBM Plex Mono',monospace; color:var(--amber); font-weight:600; font-size:15px; margin-top:10px;}
+.bot-panel{background:var(--bg-raised); border:1px solid var(--line); border-radius:14px; padding:22px; max-width:540px;}
+.bot-log{ display:flex; flex-direction:column; gap:0; margin-bottom:16px; }
+.bot-row{display:flex; gap:10px; padding:9px 0; font-size:14px; align-items:flex-start;}
+.bot-row + .bot-row{border-top:1px dashed var(--line);}
+.bot-tag{font-family:'IBM Plex Mono',monospace; font-size:11px; background:var(--amber-soft); color:var(--amber); padding:3px 9px; border-radius:999px; flex-shrink:0;}
+.bot-row.customer .bot-tag{ background:color-mix(in srgb, var(--accent) 16%, transparent); color:var(--accent); }
+.bot-input-row{ display:flex; gap:8px; }
+.bot-input-row input{
+  flex:1; font:inherit; font-size:14px; padding:11px 13px; border-radius:8px;
+  border:1px solid var(--line); background:var(--bg); color:var(--ink);
+}
+.bot-input-row button{
+  background:var(--accent); color:var(--accent-ink); border:none; border-radius:8px;
+  padding:0 18px; font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;
+}
+.bot-hint{ font-size:12px; color:var(--muted); margin-top:10px; }
+.insta-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px;}
+.insta-post{background:var(--bg-raised); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+.insta-art{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; text-align:center; padding:16px; color:var(--accent-ink);}
+.insta-cap{padding:12px 14px; font-size:12.5px; color:var(--muted);}
+footer{padding-block:32px; text-align:center; color:var(--muted); font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Sample project built by <a href="../portfolio.html">InfusioTech</a> to demonstrate a catalog + WhatsApp stock-bot build — not a live business.</div>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#">Sharma Electronics</a>
+    <nav>
+      <a href="#catalog">Catalog</a>
+      <a href="#bot">Stock bot</a>
+    </nav>
+    <a class="ask-btn" href="https://wa.me/910000000003?text=Hi%2C%20is%20this%20item%20in%20stock%3F" target="_blank" rel="noopener">Ask on WhatsApp</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Johari Bazaar, Jaipur</div>
+      <h1>Stop answering "is it in stock?" forty times a day.</h1>
+      <p>Customers browse the catalog, then ask the WhatsApp bot about stock or price — it answers instantly from the same list you update, so nobody's waiting on you to pick up.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="#catalog">Browse catalog</a>
+        <a class="btn btn-ghost" href="https://wa.me/910000000003" target="_blank" rel="noopener">Try the WhatsApp bot</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="catalog">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Catalog</div>
+        <h2>Popular this week</h2>
+      </div>
+      <div class="prod-grid">
+        <div class="prod"><span class="stock">In stock</span><h4>Ceiling Fan, 1200mm</h4><p>Havells, 3-star rated</p><div class="price">₹1,850</div></div>
+        <div class="prod"><span class="stock">In stock</span><h4>LED Bulb 9W (Pack of 4)</h4><p>Cool white, B22 base</p><div class="price">₹360</div></div>
+        <div class="prod"><span class="stock">2 left</span><h4>Mixer Grinder 750W</h4><p>3 jars, stainless steel blades</p><div class="price">₹2,650</div></div>
+        <div class="prod"><span class="stock">In stock</span><h4>Extension Board, 6-socket</h4><p>Surge protected, 2m cable</p><div class="price">₹520</div></div>
+        <div class="prod"><span class="stock">Order in</span><h4>Inverter, 1500VA</h4><p>Pure sine wave, 2-year warranty</p><div class="price">₹6,900</div></div>
+        <div class="prod"><span class="stock">In stock</span><h4>Water Heater, 15L</h4><p>Wall-mounted, 5-star rated</p><div class="price">₹7,400</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="bot">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Try the stock bot</div>
+        <h2>Type a product name — get a real instant answer</h2>
+      </div>
+      <div class="bot-panel">
+        <div class="bot-log" id="botLog">
+          <div class="bot-row"><span class="bot-tag">Bot</span> Hi! Ask me about ceiling fan, LED bulb, mixer, extension board, inverter, or water heater.</div>
+        </div>
+        <div class="bot-input-row">
+          <input id="botInput" type="text" placeholder="e.g. do you have the mixer grinder?">
+          <button id="botSend" type="button">Ask</button>
+        </div>
+        <p class="bot-hint">This runs entirely in your browser to demonstrate the logic — the real version replies over WhatsApp using the same stock list you update.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="social" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Weekly Instagram post templates</div>
+        <h2>Ready-made posts, swapped in every week</h2>
+      </div>
+      <div class="insta-grid">
+        <div class="insta-post"><div class="insta-art" style="background:linear-gradient(150deg, var(--accent), #6EA0F5);">NEW STOCK<br>Ceiling Fans</div><div class="insta-cap">"Beat the heat — new Havells fans just in. DM or WhatsApp to reserve." · Mon</div></div>
+        <div class="insta-post"><div class="insta-art" style="background:linear-gradient(150deg, var(--amber), #F5C98A); color:#241A08;">WEEKEND<br>OFFER</div><div class="insta-cap">"10% off all LED lighting this weekend only." · Thu</div></div>
+        <div class="insta-post"><div class="insta-art" style="background:linear-gradient(150deg, #2A3A5C, var(--accent));">CUSTOMER<br>FAVOURITE</div><div class="insta-cap">"Our best-selling mixer grinder — 3 jars, 750W." · Sat</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Sharma Electronics — a sample project built by InfusioTech · <a href="../portfolio.html">See more work</a></footer>
+
+<script>
+  var STOCK = [
+    { keys:['fan','ceiling'], name:'Havells 1200mm Ceiling Fan', price:'₹1,850', status:'in stock' },
+    { keys:['led','bulb'], name:'LED Bulb 9W (Pack of 4)', price:'₹360', status:'in stock' },
+    { keys:['mixer','grinder'], name:'Mixer Grinder 750W', price:'₹2,650', status:'only 2 left' },
+    { keys:['extension','board','socket'], name:'Extension Board, 6-socket', price:'₹520', status:'in stock' },
+    { keys:['inverter'], name:'Inverter 1500VA', price:'₹6,900', status:'available to order, 2-day lead time' },
+    { keys:['water','heater','geyser'], name:'Water Heater 15L', price:'₹7,400', status:'in stock' }
+  ];
+
+  var botLog = document.getElementById('botLog');
+  var botInput = document.getElementById('botInput');
+
+  function addRow(who, text){
+    var row = document.createElement('div');
+    row.className = 'bot-row' + (who === 'You' ? ' customer' : '');
+    row.innerHTML = '<span class="bot-tag">' + who + '</span> ' + text;
+    botLog.appendChild(row);
+    botLog.scrollTop = botLog.scrollHeight;
+  }
+
+  function askBot(){
+    var q = botInput.value.trim();
+    if (!q) return;
+    addRow('You', q.replace(/</g,'&lt;'));
+    botInput.value = '';
+    var ql = q.toLowerCase();
+    var match = STOCK.find(function(item){
+      return item.keys.some(function(k){ return ql.indexOf(k) !== -1; });
+    });
+    setTimeout(function(){
+      if (match){
+        addRow('Bot', 'Yes — ' + match.name + ', ' + match.price + ', ' + match.status + '. Want to reserve one?');
+      } else {
+        addRow('Bot', "Don't have that one listed — try ceiling fan, LED bulb, mixer, extension board, inverter, or water heater.");
+      }
+    }, 500);
+  }
+
+  document.getElementById('botSend').addEventListener('click', askBot);
+  botInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') askBot(); });
+</script>
+
+</body>
+</html>

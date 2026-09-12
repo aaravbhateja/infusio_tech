@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rasoi Junction — Home-Style Dining in Jaipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#FBF7F1; --bg-raised:#FFFFFF; --ink:#2B1A14; --muted:#7A6558; --line:#E7DCCC;
+  --accent:#8A2432; --accent-ink:#fff; --gold:#B4842A; --gold-soft:#F3E6C9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1A1210; --bg-raised:#241914; --ink:#F0E6DC; --muted:#B4A192; --line:#3A2C24;
+    --accent:#D4667A; --accent-ink:#1A1210; --gold:#E0AE55; --gold-soft:#2E2416;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1A1210; --bg-raised:#241914; --ink:#F0E6DC; --muted:#B4A192; --line:#3A2C24;
+  --accent:#D4667A; --accent-ink:#1A1210; --gold:#E0AE55; --gold-soft:#2E2416;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:'Mulish',sans-serif; line-height:1.6;}
+h1,h2,h3{font-family:'Marcellus',serif; font-weight:400; text-wrap:balance; margin:0;}
+.wrap{max-width:1080px; margin-inline:auto; padding-inline:24px;}
+a{color:var(--accent);}
+.demo-banner{
+  background:var(--ink); color:var(--bg); text-align:center; padding:10px 16px; font-size:13px;
+  font-family:'IBM Plex Mono',monospace;
+}
+.demo-banner a{color:var(--gold);}
+header{padding-block:22px; border-bottom:1px solid var(--line); position:sticky; top:0; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(8px); z-index:5;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+.brand{font-family:'Marcellus',serif; font-size:22px; color:var(--ink); text-decoration:none;}
+nav{display:flex; gap:24px; font-size:14.5px;}
+nav a{color:var(--ink); text-decoration:none;}
+nav a:hover{color:var(--accent);}
+.order-btn{background:var(--accent); color:var(--accent-ink); padding:9px 18px; border-radius:999px; font-weight:600; font-size:14px; text-decoration:none; white-space:nowrap;}
+.hero{padding-block:64px 56px; border-bottom:1px solid var(--line); display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;}
+.hero .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold);}
+.hero h1{font-size:clamp(32px,4.2vw,50px); margin-top:12px; line-height:1.1;}
+.hero p{color:var(--muted); font-size:17px; max-width:48ch; margin-top:16px;}
+.hero-ctas{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:999px; font-weight:600; font-size:15px; text-decoration:none;}
+.btn-accent{background:var(--accent); color:var(--accent-ink);}
+.btn-ghost{border:1px solid var(--line); color:var(--ink);}
+.hero-art{aspect-ratio:4/3; border-radius:16px; background:linear-gradient(150deg, var(--gold-soft), var(--bg-raised)); border:1px solid var(--line); display:flex; align-items:center; justify-content:center;}
+.hero-art svg{width:40%; height:40%; color:var(--gold);}
+.section{padding-block:52px; border-bottom:1px solid var(--line);}
+.section:last-of-type{border-bottom:none;}
+.section-head{max-width:60ch; margin-bottom:32px;}
+.section-head .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold);}
+.section-head h2{font-size:clamp(24px,3vw,32px); margin-top:8px;}
+.menu-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;}
+.menu-item{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:16px 18px; border:1px solid var(--line); border-radius:12px; background:var(--bg-raised);}
+.menu-item h4{font-family:'Marcellus',serif; font-weight:400; font-size:18px;}
+.menu-item p{font-size:13.5px; color:var(--muted); margin-top:4px;}
+.menu-item-right{display:flex; flex-direction:column; align-items:flex-end; gap:8px;}
+.price{font-family:'IBM Plex Mono',monospace; color:var(--gold); white-space:nowrap; font-size:14px;}
+.order-mini{
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  background:color-mix(in srgb, var(--accent) 12%, transparent); color:var(--accent);
+  border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  padding:5px 10px; border-radius:999px; text-decoration:none; white-space:nowrap;
+  transition: background .15s ease, transform .15s ease;
+}
+.order-mini:hover{ background:var(--accent); color:var(--accent-ink); transform:translateY(-1px); }
+.map-embed{ border-radius:14px; overflow:hidden; border:1px solid var(--line); margin-top:24px; }
+.map-embed iframe{ width:100%; height:280px; display:block; border:0; }
+.info-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;}
+.info-card{background:var(--bg-raised); border:1px solid var(--line); border-radius:12px; padding:20px;}
+.info-card .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.info-card h4{font-family:'Marcellus',serif; font-weight:400; font-size:17px; margin-top:6px;}
+.info-card p{font-size:13.5px; color:var(--muted); margin-top:6px;}
+footer{padding-block:32px; text-align:center; color:var(--muted); font-size:13px;}
+@media(max-width:760px){ .hero{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Sample project built by <a href="../portfolio.html">InfusioTech</a> to demonstrate a real restaurant site — not a live business.</div>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#">Rasoi Junction</a>
+    <nav>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="order-btn" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20order%20from%20Rasoi%20Junction" target="_blank" rel="noopener">Order on WhatsApp</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap" style="display:contents;">
+    <div>
+      <div class="eyebrow">Malviya Nagar, Jaipur</div>
+      <h1>Home-style Rajasthani food, ordered the way you already text.</h1>
+      <p>No app to download, no account to make. Browse the menu, tap a dish, and your order lands straight in our WhatsApp — same as calling, just faster.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="#menu">See the menu</a>
+        <a class="btn btn-ghost" href="https://wa.me/910000000000" target="_blank" rel="noopener">Order on WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M7 3v7a2 2 0 002 2v9M7 3a2 2 0 00-2 2v5a2 2 0 002 2m0-9v9m5-9v9m5-9c-2.2 0-3 1.8-3 4s.8 4 3 4v6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    </div>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Today's menu</div>
+        <h2>A short menu, made fresh — not a hundred items nobody finishes</h2>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item"><div><h4>Dal Baati Churma</h4><p>Baked wheat rolls, spiced lentils, jaggery churma</p></div><div class="menu-item-right"><div class="price">₹220</div><a class="order-mini" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20order%3A%201x%20Dal%20Baati%20Churma%20(%E2%82%B9220)" target="_blank" rel="noopener">Order →</a></div></div>
+        <div class="menu-item"><div><h4>Gatte ki Sabzi</h4><p>Gram-flour dumplings in a tangy yogurt curry</p></div><div class="menu-item-right"><div class="price">₹180</div><a class="order-mini" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20order%3A%201x%20Gatte%20ki%20Sabzi%20(%E2%82%B9180)" target="_blank" rel="noopener">Order →</a></div></div>
+        <div class="menu-item"><div><h4>Laal Maas</h4><p>Slow-cooked mutton, Mathania chilli, ghee</p></div><div class="menu-item-right"><div class="price">₹340</div><a class="order-mini" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20order%3A%201x%20Laal%20Maas%20(%E2%82%B9340)" target="_blank" rel="noopener">Order →</a></div></div>
+        <div class="menu-item"><div><h4>Ker Sangri</h4><p>Desert beans and berries, a Rajasthani staple</p></div><div class="menu-item-right"><div class="price">₹200</div><a class="order-mini" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20order%3A%201x%20Ker%20Sangri%20(%E2%82%B9200)" target="_blank" rel="noopener">Order →</a></div></div>
+        <div class="menu-item"><div><h4>Bajre ki Roti + Lehsun Chutney</h4><p>Millet flatbread with garlic chutney</p></div><div class="menu-item-right"><div class="price">₹90</div><a class="order-mini" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20order%3A%201x%20Bajre%20ki%20Roti%20(%E2%82%B990)" target="_blank" rel="noopener">Order →</a></div></div>
+        <div class="menu-item"><div><h4>Ghevar</h4><p>Disc-shaped sweet, soaked in sugar syrup</p></div><div class="menu-item-right"><div class="price">₹120</div><a class="order-mini" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20order%3A%201x%20Ghevar%20(%E2%82%B9120)" target="_blank" rel="noopener">Order →</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Why WhatsApp ordering</div>
+        <h2>Built for how Jaipur actually orders food</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card"><div class="tag">No app</div><h4>Order in one tap</h4><p>Every dish links straight to a pre-filled WhatsApp message — no signup, no cart to abandon.</p></div>
+        <div class="info-card"><div class="tag">Instant</div><h4>Confirmed in minutes</h4><p>Orders go directly to the kitchen's phone, so nothing sits in an app queue nobody's watching.</p></div>
+        <div class="info-card"><div class="tag">Familiar</div><h4>Same as calling in</h4><p>Customers already know how to use WhatsApp — this just removes the busy signal.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Visit us</div>
+        <h2>Malviya Nagar, Jaipur · Open 12pm – 10:30pm</h2>
+      </div>
+      <a class="btn btn-accent" href="https://wa.me/910000000000" target="_blank" rel="noopener">Chat with us on WhatsApp</a>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps?q=Malviya+Nagar,+Jaipur&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Rasoi Junction location map"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Rasoi Junction — a sample project built by InfusioTech · <a href="../portfolio.html">See more work</a></footer>
+
+</body>
+</html>

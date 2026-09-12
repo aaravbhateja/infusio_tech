@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CarePlus Clinic — Jaipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F2F8F7; --bg-raised:#FFFFFF; --ink:#122B29; --muted:#5B7472; --line:#D9E8E5;
+  --accent:#1C8C7A; --accent-ink:#fff; --sky:#3E7FBF; --sky-soft:#E3EEF9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1817; --bg-raised:#132422; --ink:#E4F2F0; --muted:#8FADA9; --line:#213836;
+    --accent:#4FC7AE; --accent-ink:#0C1817; --sky:#7FB3E8; --sky-soft:#1B2A3A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1817; --bg-raised:#132422; --ink:#E4F2F0; --muted:#8FADA9; --line:#213836;
+  --accent:#4FC7AE; --accent-ink:#0C1817; --sky:#7FB3E8; --sky-soft:#1B2A3A;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:'Nunito',sans-serif; line-height:1.6;}
+h1,h2,h3{font-family:'Nunito',sans-serif; font-weight:800; text-wrap:balance; margin:0;}
+.wrap{max-width:1080px; margin-inline:auto; padding-inline:24px;}
+.demo-banner{background:var(--ink); color:var(--bg); text-align:center; padding:10px 16px; font-size:13px; font-family:'IBM Plex Mono',monospace;}
+.demo-banner a{color:var(--accent);}
+header{padding-block:20px; border-bottom:1px solid var(--line); position:sticky; top:0; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(8px); z-index:5;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+.brand{font-family:'Nunito',sans-serif; font-weight:800; font-size:19px; color:var(--ink); text-decoration:none;}
+nav{display:flex; gap:22px; font-size:14px;}
+nav a{color:var(--ink); text-decoration:none;}
+nav a:hover{color:var(--accent);}
+.appt-btn{background:var(--accent); color:var(--accent-ink); padding:9px 18px; border-radius:999px; font-weight:700; font-size:14px; text-decoration:none; white-space:nowrap;}
+.hero{padding-block:60px 50px; border-bottom:1px solid var(--line);}
+.hero .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--sky);}
+.hero h1{font-size:clamp(30px,4vw,46px); margin-top:12px; line-height:1.15; max-width:19ch;}
+.hero p{color:var(--muted); font-size:16.5px; max-width:54ch; margin-top:16px;}
+.hero-ctas{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:999px; font-weight:700; font-size:14.5px; text-decoration:none;}
+.btn-accent{background:var(--accent); color:var(--accent-ink);}
+.btn-ghost{border:1px solid var(--line); color:var(--ink);}
+.section{padding-block:50px; border-bottom:1px solid var(--line);}
+.section:last-of-type{border-bottom:none;}
+.section-head{max-width:60ch; margin-bottom:30px;}
+.section-head .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--sky);}
+.section-head h2{font-size:clamp(22px,2.8vw,30px); margin-top:8px;}
+.doc-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px;}
+.doc-card{background:var(--bg-raised); border:1px solid var(--line); border-radius:14px; padding:20px; display:flex; gap:14px; align-items:flex-start;}
+.doc-avatar{width:52px; height:52px; border-radius:50%; background:var(--sky-soft); color:var(--sky); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; flex-shrink:0;}
+.doc-card h4{font-size:16.5px;}
+.doc-card .spec{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em;}
+.doc-card p{font-size:13px; color:var(--muted); margin-top:6px;}
+.doc-book{
+  display:inline-flex; align-items:center; gap:5px; margin-top:10px;
+  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  background:color-mix(in srgb, var(--accent) 12%, transparent); color:var(--accent);
+  border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  padding:5px 10px; border-radius:999px; text-decoration:none;
+}
+.doc-book:hover{ background:var(--accent); color:var(--accent-ink); }
+.trust-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); border:1px solid var(--line); border-radius:14px; background:var(--bg-raised); overflow:hidden;}
+.trust-item{padding:20px; border-left:1px solid var(--line);}
+.trust-item:first-child{border-left:none;}
+.trust-item .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent);}
+.trust-item h4{font-size:15.5px; margin-top:6px;}
+.trust-item p{font-size:13px; color:var(--muted); margin-top:4px;}
+.sim-btn{
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:18px;
+  background:var(--accent); color:var(--accent-ink); border:none; cursor:pointer;
+  padding:12px 20px; border-radius:999px; font-weight:700; font-size:14.5px; font-family:inherit;
+}
+.sim-btn:disabled{ opacity:.6; cursor:default; }
+.flow{background:var(--bg-raised); border:1px solid var(--line); border-radius:16px; padding:26px; max-width:520px; margin-top:20px;}
+.flow-row{display:flex; align-items:center; gap:10px; padding:10px 0; font-size:14px; opacity:.4; transition:opacity .3s ease;}
+.flow-row.active{opacity:1;}
+.flow-row.done .flow-badge{background:var(--accent); color:var(--accent-ink);}
+.flow-row + .flow-row{border-top:1px dashed var(--line);}
+.flow-badge{font-family:'IBM Plex Mono',monospace; font-size:11px; background:var(--sky-soft); color:var(--sky); padding:3px 9px; border-radius:999px; transition: background .2s ease, color .2s ease;}
+.form-grid{display:flex; flex-direction:column; gap:14px; max-width:440px;}
+.field{display:flex; flex-direction:column; gap:6px;}
+.field label{font-size:13px; font-weight:700;}
+.field input, .field select{
+  font:inherit; font-size:14.5px; padding:11px 13px; border-radius:8px;
+  border:1px solid var(--line); background:var(--bg-raised); color:var(--ink);
+}
+footer{padding-block:32px; text-align:center; color:var(--muted); font-size:13px;}
+@media(max-width:640px){ .trust-item{border-left:none; border-top:1px solid var(--line);} .trust-item:first-child{border-top:none;} }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Sample project built by <a href="../portfolio.html">InfusioTech</a> to demonstrate an appointment-automation build — not a live business.</div>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#">CarePlus Clinic</a>
+    <nav>
+      <a href="#doctors">Doctors</a>
+      <a href="#trust">Why us</a>
+    </nav>
+    <a class="appt-btn" href="https://wa.me/910000000004?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener">Book appointment</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Tonk Road, Jaipur</div>
+      <h1>A missed call here never becomes a missed patient.</h1>
+      <p>If the front desk can't pick up, you get an instant WhatsApp text with a booking link — so waiting on hold is never the reason someone doesn't get seen.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="https://wa.me/910000000004" target="_blank" rel="noopener">Book an appointment</a>
+        <a class="btn btn-ghost" href="#doctors">Meet the doctors</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="doctors">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Our doctors</div>
+        <h2>General &amp; family care, six days a week</h2>
+      </div>
+      <div class="doc-grid">
+        <div class="doc-card"><div class="doc-avatar">SR</div><div><h4>Dr. S. Rathore</h4><div class="spec">General Physician</div><p>Mon–Sat, 10am–1pm &amp; 5pm–8pm</p><a class="doc-book" href="https://wa.me/910000000004?text=Hi%2C%20I%27d%20like%20to%20book%20with%20Dr.%20S.%20Rathore%20(General%20Physician)" target="_blank" rel="noopener">Book with Dr. Rathore →</a></div></div>
+        <div class="doc-card"><div class="doc-avatar">PM</div><div><h4>Dr. P. Mathur</h4><div class="spec">Pediatrics</div><p>Mon, Wed, Fri, 4pm–7pm</p><a class="doc-book" href="https://wa.me/910000000004?text=Hi%2C%20I%27d%20like%20to%20book%20with%20Dr.%20P.%20Mathur%20(Pediatrics)" target="_blank" rel="noopener">Book with Dr. Mathur →</a></div></div>
+        <div class="doc-card"><div class="doc-avatar">AK</div><div><h4>Dr. A. Kothari</h4><div class="spec">Dermatology</div><p>Tue, Thu, Sat, 11am–2pm</p><a class="doc-book" href="https://wa.me/910000000004?text=Hi%2C%20I%27d%20like%20to%20book%20with%20Dr.%20A.%20Kothari%20(Dermatology)" target="_blank" rel="noopener">Book with Dr. Kothari →</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="book">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Request an appointment</div>
+        <h2>Fill this in — it opens WhatsApp with your details ready to send</h2>
+      </div>
+      <form class="form-grid" id="apptForm">
+        <div class="field"><label for="pname">Your name</label><input id="pname" required placeholder="e.g. Ramesh Gupta"></div>
+        <div class="field"><label for="pdoc">Doctor</label>
+          <select id="pdoc"><option>Dr. S. Rathore — General Physician</option><option>Dr. P. Mathur — Pediatrics</option><option>Dr. A. Kothari — Dermatology</option></select>
+        </div>
+        <div class="field"><label for="ptime">Preferred time</label><input id="ptime" placeholder="e.g. Tomorrow, after 5pm"></div>
+        <button class="btn btn-accent" type="submit" style="align-self:flex-start;">Send request on WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="trust" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What's automated</div>
+        <h2>Built so the front desk isn't the bottleneck</h2>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item"><div class="tag">Missed call</div><h4>Auto-text callback</h4><p>Instant WhatsApp link the moment a call goes unanswered.</p></div>
+        <div class="trust-item"><div class="tag">Booking</div><h4>Slot confirmation</h4><p>Patients pick an open slot themselves, no back-and-forth calls.</p></div>
+        <div class="trust-item"><div class="tag">Reminder</div><h4>Day-before text</h4><p>Cuts down no-shows without anyone manually calling patients.</p></div>
+      </div>
+      <button class="sim-btn" id="simBtn" type="button" style="margin-top:24px;">▶ Simulate a missed call</button>
+      <div class="flow" id="flow">
+        <div class="flow-row"><span class="flow-badge">Patient</span> calls the clinic, front desk is on another line</div>
+        <div class="flow-row"><span class="flow-badge">System</span> auto-texts a WhatsApp booking link within seconds</div>
+        <div class="flow-row"><span class="flow-badge">Patient</span> picks an open slot from the link</div>
+        <div class="flow-row"><span class="flow-badge">System</span> sends a reminder the evening before</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>CarePlus Clinic — a sample project built by InfusioTech · <a href="../portfolio.html">See more work</a></footer>
+
+<script>
+  var apptForm = document.getElementById('apptForm');
+  apptForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('pname').value.trim();
+    var doc = document.getElementById('pdoc').value;
+    var time = document.getElementById('ptime').value.trim();
+    var text = "Hi, I'm " + name + ". I'd like to book with " + doc + (time ? (", preferred time: " + time) : '') + '.';
+    window.open('https://wa.me/910000000004?text=' + encodeURIComponent(text), '_blank');
+  });
+
+  var simBtn = document.getElementById('simBtn');
+  var rows = document.querySelectorAll('#flow .flow-row');
+  simBtn.addEventListener('click', function(){
+    simBtn.disabled = true;
+    simBtn.textContent = 'Running…';
+    rows.forEach(function(r){ r.classList.remove('active','done'); });
+    var i = 0;
+    function step(){
+      if (i > 0) rows[i-1].classList.add('done');
+      if (i < rows.length){
+        rows[i].classList.add('active');
+        i++;
+        setTimeout(step, 750);
+      } else {
+        simBtn.disabled = false;
+        simBtn.textContent = '▶ Simulate a missed call';
+      }
+    }
+    step();
+  });
+</script>
+
+</body>
+</html>

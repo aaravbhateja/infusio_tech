@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink City Properties — Jaipur Listings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F5F6F8; --bg-raised:#FFFFFF; --ink:#101B2D; --muted:#5C6A80; --line:#DCE1E8;
+  --accent:#B68A34; --accent-ink:#101B2D; --navy:#101B2D;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1420; --bg-raised:#141E2E; --ink:#E9EDF3; --muted:#8C99AD; --line:#232F42;
+    --accent:#D7AB56; --accent-ink:#0C1420; --navy:#E9EDF3;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1420; --bg-raised:#141E2E; --ink:#E9EDF3; --muted:#8C99AD; --line:#232F42;
+  --accent:#D7AB56; --accent-ink:#0C1420; --navy:#E9EDF3;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:'Work Sans',sans-serif; line-height:1.6;}
+h1,h2,h3{font-family:'Merriweather',serif; font-weight:900; text-wrap:balance; margin:0;}
+.wrap{max-width:1120px; margin-inline:auto; padding-inline:24px;}
+.demo-banner{background:var(--navy); color:var(--bg); text-align:center; padding:10px 16px; font-size:13px; font-family:'IBM Plex Mono',monospace;}
+.demo-banner a{color:var(--accent);}
+header{padding-block:20px; border-bottom:1px solid var(--line); position:sticky; top:0; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(8px); z-index:5;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+.brand{font-family:'Merriweather',serif; font-weight:900; font-size:19px; color:var(--ink); text-decoration:none;}
+nav{display:flex; gap:22px; font-size:14px;}
+nav a{color:var(--ink); text-decoration:none;}
+nav a:hover{color:var(--accent);}
+.enq-btn{background:var(--accent); color:var(--accent-ink); padding:9px 18px; border-radius:6px; font-weight:600; font-size:14px; text-decoration:none; white-space:nowrap;}
+.hero{padding-block:60px 50px; border-bottom:1px solid var(--line);}
+.hero .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent);}
+.hero h1{font-size:clamp(30px,4vw,46px); margin-top:12px; line-height:1.15; max-width:20ch;}
+.hero p{color:var(--muted); font-size:16.5px; max-width:56ch; margin-top:16px;}
+.hero-ctas{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:6px; font-weight:600; font-size:14.5px; text-decoration:none;}
+.btn-accent{background:var(--accent); color:var(--accent-ink);}
+.btn-ghost{border:1px solid var(--line); color:var(--ink);}
+.section{padding-block:50px; border-bottom:1px solid var(--line);}
+.section:last-of-type{border-bottom:none;}
+.section-head{max-width:60ch; margin-bottom:30px;}
+.section-head .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent);}
+.section-head h2{font-size:clamp(22px,2.8vw,30px); margin-top:8px; font-weight:700;}
+.listing-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;}
+.listing{background:var(--bg-raised); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+.listing-img{aspect-ratio:16/10; background:linear-gradient(150deg, color-mix(in srgb, var(--accent) 18%, transparent), var(--bg)); display:flex; align-items:center; justify-content:center; color:var(--accent); border-bottom:1px solid var(--line);}
+.listing-body{padding:18px;}
+.listing-body h4{font-family:'Work Sans',sans-serif; font-weight:600; font-size:16.5px;}
+.listing-body p{font-size:13px; color:var(--muted); margin-top:4px;}
+.listing-price{font-family:'IBM Plex Mono',monospace; color:var(--accent); font-size:15px; margin-top:10px; font-weight:600;}
+.listing-tags{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
+.listing-tags span{font-size:11px; background:var(--bg); border:1px solid var(--line); padding:3px 8px; border-radius:999px; color:var(--muted);}
+.listing-foot{display:flex; align-items:center; justify-content:space-between; margin-top:12px;}
+.listing-enq{
+  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  background:color-mix(in srgb, var(--accent) 14%, transparent); color:var(--accent);
+  border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  padding:6px 12px; border-radius:6px; text-decoration:none;
+  transition: background .15s ease, transform .15s ease;
+}
+.listing-enq:hover{ background:var(--accent); color:var(--accent-ink); transform:translateY(-1px); }
+.listing[hidden]{ display:none; }
+.filter-row{ display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap; }
+.filter-btn{
+  font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600;
+  background:var(--bg-raised); color:var(--muted); border:1px solid var(--line);
+  padding:9px 16px; border-radius:999px; cursor:pointer;
+}
+.filter-btn.active{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+.form-grid{display:flex; flex-direction:column; gap:14px; max-width:440px; margin-top:24px;}
+.field{display:flex; flex-direction:column; gap:6px;}
+.field label{font-size:13px; font-weight:600;}
+.field input, .field select{
+  font:inherit; font-size:14.5px; padding:11px 13px; border-radius:6px;
+  border:1px solid var(--line); background:var(--bg-raised); color:var(--ink);
+}
+footer{padding-block:32px; text-align:center; color:var(--muted); font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Sample project built by <a href="../portfolio.html">InfusioTech</a> to demonstrate a lead-capture listings site — not a live business.</div>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#">PINK CITY PROPERTIES</a>
+    <nav>
+      <a href="#listings">Listings</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="enq-btn" href="https://wa.me/910000000002?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20property" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Jaipur residential &amp; commercial</div>
+      <h1>Listings that don't sit in a form nobody reads.</h1>
+      <p>Every enquiry here goes straight to WhatsApp, not an inbox that gets checked once a week — so a serious buyer never waits three days for a reply.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="#listings">Browse listings</a>
+        <a class="btn btn-ghost" href="https://wa.me/910000000002" target="_blank" rel="noopener">Talk to an agent</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="listings">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Current listings</div>
+        <h2>4 properties, updated this week</h2>
+      </div>
+      <div class="filter-row" id="filterRow">
+        <button class="filter-btn active" data-filter="all" type="button">All</button>
+        <button class="filter-btn" data-filter="residential" type="button">Residential</button>
+        <button class="filter-btn" data-filter="commercial" type="button">Commercial</button>
+      </div>
+      <div class="listing-grid" id="listingGrid">
+        <div class="listing" data-type="residential">
+          <div class="listing-img"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 10.5L12 4l8 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5V20a.5.5 0 00.5.5h4.5v-6h3v6H18a.5.5 0 00.5-.5V9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="listing-body">
+            <h4>3BHK Apartment, Vaishali Nagar</h4>
+            <p>1,650 sq.ft · 2nd floor · covered parking</p>
+            <div class="listing-tags"><span>Ready to move</span><span>Gated society</span></div>
+            <div class="listing-foot"><div class="listing-price">₹78 Lakh</div><a class="listing-enq" href="https://wa.me/910000000002?text=Hi%2C%20I%27m%20interested%20in%3A%203BHK%20Apartment%2C%20Vaishali%20Nagar%20(%E2%82%B978%20Lakh)" target="_blank" rel="noopener">Enquire →</a></div>
+          </div>
+        </div>
+        <div class="listing" data-type="residential">
+          <div class="listing-img"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 10.5L12 4l8 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5V20a.5.5 0 00.5.5h4.5v-6h3v6H18a.5.5 0 00.5-.5V9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="listing-body">
+            <h4>Independent House, Mansarovar</h4>
+            <p>2,200 sq.ft plot · G+1 · 4 bedrooms</p>
+            <div class="listing-tags"><span>Corner plot</span><span>North-facing</span></div>
+            <div class="listing-foot"><div class="listing-price">₹1.4 Cr</div><a class="listing-enq" href="https://wa.me/910000000002?text=Hi%2C%20I%27m%20interested%20in%3A%20Independent%20House%2C%20Mansarovar%20(%E2%82%B91.4%20Cr)" target="_blank" rel="noopener">Enquire →</a></div>
+          </div>
+        </div>
+        <div class="listing" data-type="commercial">
+          <div class="listing-img"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 10.5L12 4l8 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5V20a.5.5 0 00.5.5h4.5v-6h3v6H18a.5.5 0 00.5-.5V9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="listing-body">
+            <h4>Commercial Shop, Malviya Nagar</h4>
+            <p>420 sq.ft · ground floor · main road</p>
+            <div class="listing-tags"><span>High footfall</span><span>Lease or sale</span></div>
+            <div class="listing-foot"><div class="listing-price">₹52 Lakh</div><a class="listing-enq" href="https://wa.me/910000000002?text=Hi%2C%20I%27m%20interested%20in%3A%20Commercial%20Shop%2C%20Malviya%20Nagar%20(%E2%82%B952%20Lakh)" target="_blank" rel="noopener">Enquire →</a></div>
+          </div>
+        </div>
+        <div class="listing" data-type="residential">
+          <div class="listing-img"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 10.5L12 4l8 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5V20a.5.5 0 00.5.5h4.5v-6h3v6H18a.5.5 0 00.5-.5V9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="listing-body">
+            <h4>2BHK Flat, Jagatpura</h4>
+            <p>1,050 sq.ft · 4th floor · lift access</p>
+            <div class="listing-tags"><span>Under construction</span><span>Dec 2026 handover</span></div>
+            <div class="listing-foot"><div class="listing-price">₹46 Lakh</div><a class="listing-enq" href="https://wa.me/910000000002?text=Hi%2C%20I%27m%20interested%20in%3A%202BHK%20Flat%2C%20Jagatpura%20(%E2%82%B946%20Lakh)" target="_blank" rel="noopener">Enquire →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Looking for something not listed here?</h2>
+        <p style="color:var(--muted); font-size:14.5px; margin-top:8px;">Tell us what you need — this opens WhatsApp with your details filled in, ready to send.</p>
+      </div>
+      <form class="form-grid" id="enqForm">
+        <div class="field"><label for="rname">Your name</label><input id="rname" required placeholder="e.g. Priya Agarwal"></div>
+        <div class="field"><label for="rtype">Looking for</label>
+          <select id="rtype"><option>Residential — buy</option><option>Residential — rent</option><option>Commercial — buy</option><option>Commercial — lease</option></select>
+        </div>
+        <div class="field"><label for="rbudget">Budget</label><input id="rbudget" placeholder="e.g. ₹60–80 Lakh"></div>
+        <button class="btn btn-accent" type="submit" style="align-self:flex-start;">Send enquiry on WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>Pink City Properties — a sample project built by InfusioTech · <a href="../portfolio.html">See more work</a></footer>
+
+<script>
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var listings = document.querySelectorAll('.listing');
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filterBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      listings.forEach(function(l){
+        l.hidden = (f !== 'all' && l.dataset.type !== f);
+      });
+    });
+  });
+
+  var enqForm = document.getElementById('enqForm');
+  enqForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('rname').value.trim();
+    var type = document.getElementById('rtype').value;
+    var budget = document.getElementById('rbudget').value.trim();
+    var text = "Hi, I'm " + name + ". Looking for: " + type + (budget ? (", budget " + budget) : '') + '.';
+    window.open('https://wa.me/910000000002?text=' + encodeURIComponent(text), '_blank');
+  });
+</script>
+
+</body>
+</html>

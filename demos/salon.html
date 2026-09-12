@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow Studio — Salon &amp; Spa, Jaipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#FBF6F5; --bg-raised:#FFFFFF; --ink:#241C1D; --muted:#8A7776; --line:#EBDCDA;
+  --accent:#B4667A; --accent-ink:#fff; --charcoal:#2E2626;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1C1516; --bg-raised:#261D1E; --ink:#F3E9E8; --muted:#B39F9D; --line:#3A2C2D;
+    --accent:#E28FA0; --accent-ink:#1C1516; --charcoal:#F3E9E8;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1C1516; --bg-raised:#261D1E; --ink:#F3E9E8; --muted:#B39F9D; --line:#3A2C2D;
+  --accent:#E28FA0; --accent-ink:#1C1516; --charcoal:#F3E9E8;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:'Manrope',sans-serif; line-height:1.6;}
+h1,h2,h3{font-family:'Cormorant Garamond',serif; font-weight:600; text-wrap:balance; margin:0;}
+.wrap{max-width:1080px; margin-inline:auto; padding-inline:24px;}
+.demo-banner{background:var(--charcoal); color:var(--bg); text-align:center; padding:10px 16px; font-size:13px; font-family:'IBM Plex Mono',monospace;}
+.demo-banner a{color:var(--accent);}
+header{padding-block:22px; border-bottom:1px solid var(--line); position:sticky; top:0; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(8px); z-index:5;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+.brand{font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:var(--ink); text-decoration:none; letter-spacing:.02em;}
+nav{display:flex; gap:24px; font-size:14.5px;}
+nav a{color:var(--ink); text-decoration:none;}
+nav a:hover{color:var(--accent);}
+.book-btn{background:var(--accent); color:var(--accent-ink); padding:9px 18px; border-radius:999px; font-weight:600; font-size:14px; text-decoration:none; white-space:nowrap;}
+.hero{padding-block:64px 56px; border-bottom:1px solid var(--line);}
+.hero .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent);}
+.hero h1{font-size:clamp(34px,4.6vw,56px); margin-top:14px; line-height:1.08; max-width:16ch;}
+.hero p{color:var(--muted); font-size:17px; max-width:52ch; margin-top:18px;}
+.hero-ctas{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:999px; font-weight:600; font-size:15px; text-decoration:none;}
+.btn-accent{background:var(--accent); color:var(--accent-ink);}
+.btn-ghost{border:1px solid var(--line); color:var(--ink);}
+.section{padding-block:52px; border-bottom:1px solid var(--line);}
+.section:last-of-type{border-bottom:none;}
+.section-head{max-width:60ch; margin-bottom:32px;}
+.section-head .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent);}
+.section-head h2{font-size:clamp(24px,3vw,32px); margin-top:8px;}
+.svc-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
+.svc-card{background:var(--bg-raised); border:1px solid var(--line); border-radius:14px; padding:22px;}
+.svc-card h4{font-size:19px;}
+.svc-card p{font-size:13.5px; color:var(--muted); margin-top:6px;}
+.svc-card .price{font-family:'IBM Plex Mono',monospace; color:var(--accent); font-size:14px; margin-top:4px; display:block;}
+.svc-book{
+  display:inline-flex; align-items:center; gap:5px; margin-top:12px;
+  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  background:color-mix(in srgb, var(--accent) 12%, transparent); color:var(--accent);
+  border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  padding:6px 12px; border-radius:999px; text-decoration:none;
+  transition: background .15s ease, transform .15s ease;
+}
+.svc-book:hover{ background:var(--accent); color:var(--accent-ink); transform:translateY(-1px); }
+.flow{background:var(--bg-raised); border:1px solid var(--line); border-radius:16px; padding:26px; max-width:520px;}
+.flow-row{display:flex; align-items:center; gap:10px; padding:10px 0; font-size:14px; opacity:.4; transition:opacity .3s ease;}
+.flow-row.active{opacity:1;}
+.flow-row.done .flow-badge{background:var(--accent); color:var(--accent-ink);}
+.flow-row + .flow-row{border-top:1px dashed var(--line);}
+.flow-badge{font-family:'IBM Plex Mono',monospace; font-size:11px; background:color-mix(in srgb, var(--accent) 18%, transparent); color:var(--accent); padding:3px 9px; border-radius:999px; transition: background .2s ease, color .2s ease;}
+.sim-btn{
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:18px;
+  background:var(--accent); color:var(--accent-ink); border:none; cursor:pointer;
+  padding:12px 20px; border-radius:999px; font-weight:600; font-size:14.5px; font-family:inherit;
+}
+.sim-btn:disabled{ opacity:.6; cursor:default; }
+footer{padding-block:32px; text-align:center; color:var(--muted); font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Sample project built by <a href="../portfolio.html">InfusioTech</a> to demonstrate a booking-automation build — not a live business.</div>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#">Glow Studio</a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#booking">How booking works</a>
+    </nav>
+    <a class="book-btn" href="https://wa.me/910000000001?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment%20at%20Glow%20Studio" target="_blank" rel="noopener">Book on WhatsApp</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">C-Scheme, Jaipur</div>
+      <h1>Book your slot without waiting on hold.</h1>
+      <p>Glow Studio takes bookings straight over WhatsApp — no call queue, and if you ever miss us, we text you back within minutes instead of losing your booking.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="https://wa.me/910000000001" target="_blank" rel="noopener">Book an appointment</a>
+        <a class="btn btn-ghost" href="#services">View services &amp; prices</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Services</div>
+        <h2>Hair, skin, and grooming — priced upfront</h2>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card"><h4>Haircut &amp; Style</h4><p>Wash, cut, and blow-dry with a senior stylist</p><span class="price">₹600</span><a class="svc-book" href="https://wa.me/910000000001?text=Hi%2C%20I%27d%20like%20to%20book%3A%20Haircut%20%26%20Style%20(%E2%82%B9600)" target="_blank" rel="noopener">Book this →</a></div>
+        <div class="svc-card"><h4>Global Hair Colour</h4><p>Ammonia-free colour, full head</p><span class="price">₹2,800</span><a class="svc-book" href="https://wa.me/910000000001?text=Hi%2C%20I%27d%20like%20to%20book%3A%20Global%20Hair%20Colour%20(%E2%82%B92%2C800)" target="_blank" rel="noopener">Book this →</a></div>
+        <div class="svc-card"><h4>Classic Facial</h4><p>Deep-cleanse facial with a 45-minute massage</p><span class="price">₹1,200</span><a class="svc-book" href="https://wa.me/910000000001?text=Hi%2C%20I%27d%20like%20to%20book%3A%20Classic%20Facial%20(%E2%82%B91%2C200)" target="_blank" rel="noopener">Book this →</a></div>
+        <div class="svc-card"><h4>Manicure &amp; Pedicure</h4><p>Combo package, gel-polish optional</p><span class="price">₹900</span><a class="svc-book" href="https://wa.me/910000000001?text=Hi%2C%20I%27d%20like%20to%20book%3A%20Manicure%20%26%20Pedicure%20(%E2%82%B9900)" target="_blank" rel="noopener">Book this →</a></div>
+        <div class="svc-card"><h4>Bridal Trial</h4><p>Full hair &amp; makeup trial run before the day</p><span class="price">₹3,500</span><a class="svc-book" href="https://wa.me/910000000001?text=Hi%2C%20I%27d%20like%20to%20book%3A%20Bridal%20Trial%20(%E2%82%B93%2C500)" target="_blank" rel="noopener">Book this →</a></div>
+        <div class="svc-card"><h4>Beard Grooming</h4><p>Shape, trim, and hot-towel finish</p><span class="price">₹350</span><a class="svc-book" href="https://wa.me/910000000001?text=Hi%2C%20I%27d%20like%20to%20book%3A%20Beard%20Grooming%20(%E2%82%B9350)" target="_blank" rel="noopener">Book this →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="booking" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How booking works</div>
+        <h2>What happens when you call and we miss it</h2>
+      </div>
+      <button class="sim-btn" id="simBtn" type="button">▶ Simulate a missed call</button>
+      <div class="flow" id="flow">
+        <div class="flow-row" data-step="0"><span class="flow-badge">You</span> call the salon, nobody picks up in time</div>
+        <div class="flow-row" data-step="1"><span class="flow-badge">System</span> auto-texts you a WhatsApp booking link within seconds</div>
+        <div class="flow-row" data-step="2"><span class="flow-badge">You</span> pick a slot from the link, no waiting on hold</div>
+        <div class="flow-row" data-step="3"><span class="flow-badge">System</span> sends a reminder the evening before</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Glow Studio — a sample project built by InfusioTech · <a href="../portfolio.html">See more work</a></footer>
+
+<script>
+  var simBtn = document.getElementById('simBtn');
+  var rows = document.querySelectorAll('#flow .flow-row');
+  simBtn.addEventListener('click', function(){
+    simBtn.disabled = true;
+    simBtn.textContent = 'Running…';
+    rows.forEach(function(r){ r.classList.remove('active','done'); });
+    var i = 0;
+    function step(){
+      if (i > 0) rows[i-1].classList.add('done');
+      if (i < rows.length){
+        rows[i].classList.add('active');
+        i++;
+        setTimeout(step, 750);
+      } else {
+        simBtn.disabled = false;
+        simBtn.textContent = '▶ Simulate a missed call';
+      }
+    }
+    step();
+  });
+</script>
+
+</body>
+</html>
