@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import { DynamicAnimatedHeroSection } from '../../components/ui/dynamic-animated-hero-section-with-gradient'
 import Reveal from '../../components/Reveal/Reveal'
+import { TiltCard } from '../../components/ui/tilt-card'
 import { waLink } from '../../data/site'
 
 const SERVICES = [
@@ -76,17 +77,19 @@ export default function Home() {
           <div className="service-grid">
             {SERVICES.map((s, i) => (
               <Reveal as="div" delay={(i % 3) * 0.06} key={s.title}>
-                <Link to="/services" className="service-card" aria-label={`${s.title} — see details on the Services page`}>
-                  <div className="icon">
-                    <s.Icon size={20} strokeWidth={1.75} />
-                  </div>
-                  <span className="tag">{s.tag}</span>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                  <span className="card-link">
-                    See details <ArrowRight size={14} strokeWidth={2} />
-                  </span>
-                </Link>
+                <TiltCard>
+                  <Link to="/services" className="service-card" aria-label={`${s.title} — see details on the Services page`}>
+                    <div className="icon">
+                      <s.Icon size={20} strokeWidth={1.75} />
+                    </div>
+                    <span className="tag">{s.tag}</span>
+                    <h3>{s.title}</h3>
+                    <p>{s.text}</p>
+                    <span className="card-link">
+                      See details <ArrowRight size={14} strokeWidth={2} />
+                    </span>
+                  </Link>
+                </TiltCard>
               </Reveal>
             ))}
           </div>

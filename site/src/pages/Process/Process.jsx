@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { MessageCircle, FileText, Hammer, Rocket, LifeBuoy } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
+import { Ambient3D } from '../../components/ui/ambient-3d'
 
 const STEPS = [
   { label: 'Step 1', title: 'Discover', Icon: MessageCircle, text: "A free call or WhatsApp chat about your business — what's slow, what's manual, where you're losing customers. No pitch, just questions." },
@@ -14,6 +15,7 @@ export default function Process() {
   return (
     <>
       <section className="page-header">
+        <Ambient3D variant="page" />
         <div className="wrap">
           <div className="eyebrow">How it works</div>
           <h1>From first message to a live, automated business</h1>

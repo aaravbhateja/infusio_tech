@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { motion, useReducedMotion } from 'motion/react'
 import { waLink, LOGO_MARK } from '../../data/site'
 
 const LINKS = [
@@ -14,6 +15,7 @@ const LINKS = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -39,7 +41,18 @@ export default function Header() {
                 className={({ isActive }) => (isActive ? 'is-active' : undefined)}
                 onClick={() => setOpen(false)}
               >
-                {l.label}
+                {({ isActive }) => (
+                  <>
+                    {l.label}
+                    {isActive && !shouldReduceMotion && (
+                      <motion.span
+                        layoutId="nav-active-indicator"
+                        className="nav-indicator"
+                        transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                      />
+                    )}
+                  </>
+                )}
               </NavLink>
             ))}
           </div>

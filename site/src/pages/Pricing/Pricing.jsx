@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Check } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
+import { Ambient3D } from '../../components/ui/ambient-3d'
+import { TiltCard } from '../../components/ui/tilt-card'
 import { waLink } from '../../data/site'
 
 const PACKAGES = [
@@ -39,6 +41,7 @@ export default function Pricing() {
   return (
     <>
       <section className="page-header">
+        <Ambient3D variant="page" />
         <div className="wrap">
           <div className="eyebrow">Packages</div>
           <h1>Straightforward pricing, no hidden quotes</h1>
@@ -50,12 +53,8 @@ export default function Pricing() {
         <div className="wrap">
           <div className="pkg-cards">
             {PACKAGES.map((p, i) => (
-              <Reveal
-                as="div"
-                key={p.name}
-                delay={i * 0.06}
-                className={`pkg-card${p.featured ? ' featured' : ''}`}
-              >
+              <Reveal as="div" key={p.name} delay={i * 0.06}>
+                <TiltCard className={`pkg-card${p.featured ? ' featured' : ''}`} maxTilt={5}>
                 {p.featured && <span className="pkg-badge">Most picked</span>}
                 <h3>{p.name}</h3>
                 <p className="pkg-who">{p.who}</p>
@@ -76,6 +75,7 @@ export default function Pricing() {
                 >
                   Ask about {p.name}
                 </a>
+                </TiltCard>
               </Reveal>
             ))}
           </div>

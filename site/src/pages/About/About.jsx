@@ -1,4 +1,5 @@
 import Reveal from '../../components/Reveal/Reveal'
+import { Ambient3D } from '../../components/ui/ambient-3d'
 import { FOUNDER_PHOTO } from '../../data/site'
 
 const VALUES = [
@@ -11,6 +12,7 @@ export default function About() {
   return (
     <>
       <section className="page-header">
+        <Ambient3D variant="page" />
         <div className="wrap">
           <div className="eyebrow">About</div>
           <h1>Why we started in Jaipur, not with enterprise clients</h1>

@@ -3,6 +3,8 @@ import {
   Globe, Smartphone, Workflow, PhoneCall, MessageCircle, TrendingUp, Megaphone,
 } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
+import { Ambient3D } from '../../components/ui/ambient-3d'
+import { TiltCard } from '../../components/ui/tilt-card'
 
 const GROUPS = [
   {
@@ -61,6 +63,7 @@ export default function Services() {
   return (
     <>
       <section className="page-header">
+        <Ambient3D variant="page" />
         <div className="wrap">
           <div className="eyebrow">What we do</div>
           <h1>Seven services, built to work together</h1>
@@ -76,15 +79,17 @@ export default function Services() {
               <h2>{g.heading}</h2>
             </Reveal>
             <div className="service-grid">
-              {g.items.map((it) => (
-                <Reveal as="div" className="service-card" key={it.title}>
-                  <div className="icon"><it.Icon size={20} strokeWidth={1.75} /></div>
-                  <span className="tag">{it.tag}</span>
-                  <h3>{it.title}</h3>
-                  <p>{it.text}</p>
-                  <ul>
-                    {it.bullets.map((b) => <li key={b}>{b}</li>)}
-                  </ul>
+              {g.items.map((it, i) => (
+                <Reveal as="div" delay={i * 0.06} key={it.title}>
+                  <TiltCard className="service-card">
+                    <div className="icon"><it.Icon size={20} strokeWidth={1.75} /></div>
+                    <span className="tag">{it.tag}</span>
+                    <h3>{it.title}</h3>
+                    <p>{it.text}</p>
+                    <ul>
+                      {it.bullets.map((b) => <li key={b}>{b}</li>)}
+                    </ul>
+                  </TiltCard>
                 </Reveal>
               ))}
             </div>

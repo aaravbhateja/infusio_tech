@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { MessageCircle, Phone, Mail, MapPin } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
+import { Ambient3D } from '../../components/ui/ambient-3d'
 import { PHONE_DISPLAY, PHONE_INTL, EMAIL, waLink } from '../../data/site'
 
 export default function Contact() {
@@ -37,6 +38,7 @@ export default function Contact() {
   return (
     <>
       <section className="page-header">
+        <Ambient3D variant="page" />
         <div className="wrap">
           <div className="eyebrow">Get in touch</div>
           <h1>Tell us about your business — free audit included</h1>

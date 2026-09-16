@@ -199,7 +199,18 @@ nav.primary-nav a::after{
 nav.primary-nav a:hover{ text-decoration:none; color: var(--accent2); }
 nav.primary-nav a:hover::after{ right:0; }
 nav.primary-nav a.is-active{
-  color: var(--accent2); border-bottom-color: var(--accent2);
+  color: var(--accent2); border-bottom-color: transparent;
+}
+/* Active-link underline slides between items via a shared layoutId, so the
+   static border is suppressed above and restored below for reduced-motion,
+   where the animated indicator isn't rendered at all. */
+.nav-indicator{
+  position:absolute; left:0; right:0; bottom:-2px;
+  height:2px; border-radius:2px;
+  background: var(--grad-brand);
+}
+@media (prefers-reduced-motion: reduce){
+  nav.primary-nav a.is-active{ border-bottom-color: var(--accent2); }
 }
 .nav-cta{
   display:inline-flex; align-items:center; gap:8px;
@@ -273,6 +284,15 @@ nav.primary-nav a.is-active{
 .service-grid{
   display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
   gap: 18px;
+}
+
+/* Cards sit inside Reveal/tilt wrappers rather than being direct grid
+   children, so the whole chain has to stretch for equal-height rows and
+   for `margin-top:auto` card footers to sit on the baseline. */
+.service-grid > *, .service-grid > * > *,
+.service-grid .service-card,
+.pkg-cards > *, .pkg-cards .pkg-card{
+  height: 100%;
 }
 .service-card{
   background: var(--bg-raised); border:1px solid var(--line); border-radius: var(--radius);
