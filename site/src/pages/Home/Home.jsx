@@ -3,7 +3,7 @@ import {
   Globe, Smartphone, Workflow, PhoneCall, MessageCircle, TrendingUp, Megaphone,
   Store, HeartPulse, Building2, UtensilsCrossed, ArrowRight,
 } from 'lucide-react'
-import AuroraHero from '../../components/AuroraHero/AuroraHero'
+import { DynamicAnimatedHeroSection } from '../../components/ui/dynamic-animated-hero-section-with-gradient'
 import Reveal from '../../components/Reveal/Reveal'
 import { waLink } from '../../data/site'
 
@@ -48,7 +48,23 @@ const SEGMENTS = [
 export default function Home() {
   return (
     <>
-      <AuroraHero />
+      <DynamicAnimatedHeroSection
+        eyebrow="Jaipur · Full-stack & automation consultancy"
+        titleLine="Ready to build"
+        gradientLine="your business online?"
+        subtitle="InfusioTech builds the website, the app, and the WhatsApp & calling automations Jaipur's local businesses need to stop losing customers to slow replies."
+        primaryCta={{
+          label: 'Get a free automation audit',
+          href: waLink("Hi InfusioTech, I'd like a free audit"),
+          external: true,
+        }}
+        secondaryCta={{ label: 'See what we build', href: `${import.meta.env.BASE_URL}services` }}
+        stats={[
+          { value: '7', label: 'services under one roof' },
+          { value: 'Jaipur', label: 'first, expanding next' },
+          { value: '<24h', label: 'typical reply time' },
+        ]}
+      />
 
       <section className="section">
         <div className="wrap">
