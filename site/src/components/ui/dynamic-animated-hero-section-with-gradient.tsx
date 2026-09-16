@@ -23,8 +23,7 @@ export interface DynamicAnimatedHeroProps {
   backgroundImage?: string
 }
 
-const DEFAULT_BACKGROUND_IMAGE =
-  "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80"
+const DEFAULT_BACKGROUND_IMAGE = `${import.meta.env.BASE_URL}assets/hero-bg.jpg`
 
 export const DynamicAnimatedHeroSection = ({
   eyebrow,
@@ -138,7 +137,7 @@ export const DynamicAnimatedHeroSection = ({
         {backgroundImage && (
           <>
             <div
-              className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
+              className="absolute inset-0 z-0 bg-cover bg-center opacity-70"
               style={{ backgroundImage: `url(${backgroundImage})` }}
               aria-hidden="true"
             />
@@ -146,7 +145,7 @@ export const DynamicAnimatedHeroSection = ({
               className="absolute inset-0 z-0"
               style={{
                 background:
-                  "radial-gradient(60% 55% at 50% 35%, rgba(11,11,15,0.35) 0%, rgba(11,11,15,0.88) 100%), linear-gradient(180deg, rgba(11,11,15,0.55) 0%, rgba(11,11,15,0.95) 100%)",
+                  "radial-gradient(55% 50% at 50% 40%, rgba(11,11,15,0.15) 0%, rgba(11,11,15,0.72) 100%), linear-gradient(180deg, rgba(11,11,15,0.15) 0%, rgba(11,11,15,0.85) 100%)",
               }}
               aria-hidden="true"
             />
