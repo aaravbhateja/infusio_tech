@@ -379,6 +379,68 @@ a.service-card:hover h3{ color: var(--accent2); }
   .segment:first-child{ border-top:none; }
 }
 
+/* ---------------- Services list (large-type, not cards) ---------------- */
+.services-list{
+  border-top: 1px solid var(--line);
+}
+.services-list-row{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 4px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+.services-list-row::before{
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--accent-soft);
+  transform: translateX(-101%);
+  transition: transform .35s cubic-bezier(0.16,1,0.3,1);
+  z-index: 0;
+}
+.services-list-row:hover::before{ transform: translateX(0); }
+.services-list-row > *{ position: relative; z-index: 1; }
+.services-list-index{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  width: 32px;
+  flex-shrink: 0;
+}
+.services-list-title{
+  font-family: 'Archivo', sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 3.6vw, 38px);
+  color: var(--ink);
+  flex: 1;
+  transition: transform .3s cubic-bezier(0.16,1,0.3,1);
+}
+.services-list-row:hover .services-list-title{ transform: translateX(10px); }
+.services-list-tag{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  flex-shrink: 0;
+  display: none;
+}
+.services-list-arrow{
+  flex-shrink: 0;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.services-list-row:hover .services-list-arrow{ opacity: 1; transform: translateX(0); }
+@media (min-width: 640px){
+  .services-list-tag{ display: block; }
+}
+
 /* ---------------- Package cards ----------------
    Replaces a horizontal-scrolling comparison table — that pattern is
    flagged High severity under Responsive/Horizontal-Scroll in the

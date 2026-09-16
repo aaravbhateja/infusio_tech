@@ -3,10 +3,11 @@ import {
   Globe, Smartphone, Workflow, PhoneCall, MessageCircle, TrendingUp, Megaphone,
   Store, HeartPulse, Building2, UtensilsCrossed, ArrowRight,
 } from 'lucide-react'
-import { DynamicAnimatedHeroSection } from '../../components/ui/dynamic-animated-hero-section-with-gradient'
+import { EditorialHero } from '../../components/ui/editorial-hero'
+import { Ticker } from '../../components/ui/ticker'
+import { Marquee } from '../../components/ui/marquee'
 import Reveal from '../../components/Reveal/Reveal'
-import { TiltCard } from '../../components/ui/tilt-card'
-import { waLink } from '../../data/site'
+import { waLink, HERO_BG } from '../../data/site'
 
 const SERVICES = [
   {
@@ -46,13 +47,21 @@ const SEGMENTS = [
   { tag: 'Food & hospitality', Icon: UtensilsCrossed, title: 'Restaurants & cafés', text: 'WhatsApp ordering automation, menu site, steady social content.' },
 ]
 
+const TICKER_ITEMS = [
+  'Now booking Q1 projects',
+  'Jaipur · Full-stack & automation consultancy',
+  'Free automation audit on WhatsApp',
+  '7 services, one point of contact',
+]
+
 export default function Home() {
   return (
     <>
-      <DynamicAnimatedHeroSection
-        eyebrow="Jaipur · Full-stack & automation consultancy"
-        titleLine="Ready to build"
-        gradientLine="your business online?"
+      <Ticker items={TICKER_ITEMS} />
+
+      <EditorialHero
+        pills={['Jaipur', 'Full-stack & automation']}
+        title={<>Fully online<br />&amp; <em>automated.</em></>}
         subtitle="InfusioTech builds the website, the app, and the WhatsApp & calling automations Jaipur's local businesses need to stop losing customers to slow replies."
         primaryCta={{
           label: 'Get a free automation audit',
@@ -60,11 +69,8 @@ export default function Home() {
           external: true,
         }}
         secondaryCta={{ label: 'See what we build', href: `${import.meta.env.BASE_URL}services` }}
-        stats={[
-          { value: '7', label: 'services under one roof' },
-          { value: 'Jaipur', label: 'first, expanding next' },
-          { value: '<24h', label: 'typical reply time' },
-        ]}
+        backgroundImage={HERO_BG}
+        marqueeWords={['WEBSITES', 'APPS', 'AUTOMATION', 'GROWTH']}
       />
 
       <section className="section">
@@ -74,22 +80,15 @@ export default function Home() {
             <h2>Seven services, one point of contact</h2>
             <p>No more juggling a web developer, a social media freelancer, and a phone setup separately. Pick a package, or take any service on its own.</p>
           </Reveal>
-          <div className="service-grid">
+          <div className="services-list">
             {SERVICES.map((s, i) => (
-              <Reveal as="div" delay={(i % 3) * 0.06} key={s.title}>
-                <TiltCard>
-                  <Link to="/services" className="service-card" aria-label={`${s.title} — see details on the Services page`}>
-                    <div className="icon">
-                      <s.Icon size={20} strokeWidth={1.75} />
-                    </div>
-                    <span className="tag">{s.tag}</span>
-                    <h3>{s.title}</h3>
-                    <p>{s.text}</p>
-                    <span className="card-link">
-                      See details <ArrowRight size={14} strokeWidth={2} />
-                    </span>
-                  </Link>
-                </TiltCard>
+              <Reveal as="div" delay={i * 0.04} key={s.title}>
+                <Link to="/services" className="services-list-row" aria-label={`${s.title} — see details on the Services page`}>
+                  <span className="services-list-index">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="services-list-title">{s.title}</span>
+                  <span className="services-list-tag">{s.tag}</span>
+                  <ArrowRight className="services-list-arrow" size={22} strokeWidth={1.75} />
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -103,17 +102,16 @@ export default function Home() {
             <h2>Built for Jaipur's local businesses first</h2>
             <p>Different businesses need different things — the site and the strategy adjust to which one you are.</p>
           </Reveal>
-          <Reveal as="div" className="segments">
-            {SEGMENTS.map((s) => (
-              <div className="segment" key={s.title}>
-                <div className="segment-icon"><s.Icon size={18} strokeWidth={1.75} /></div>
-                <div className="tag">{s.tag}</div>
-                <h4>{s.title}</h4>
-                <p>{s.text}</p>
-              </div>
-            ))}
-          </Reveal>
         </div>
+        <Marquee duration={36}>
+          {SEGMENTS.map((s) => (
+            <div className="marquee-card" key={s.title}>
+              <div className="tag">{s.tag}</div>
+              <h4>{s.title}</h4>
+              <p>{s.text}</p>
+            </div>
+          ))}
+        </Marquee>
       </section>
 
       <section className="section" style={{ borderBottom: 'none' }}>
