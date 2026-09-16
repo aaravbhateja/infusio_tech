@@ -105,6 +105,21 @@ export const DynamicAnimatedHeroSection = ({
             stroke-width: 1.5;
           }
 
+          /* preserveAspectRatio="none" stretches these corner-accent lines
+             to fill the container non-uniformly. That reads as a subtle
+             diagonal accent on wide/short hero ratios, but on anything
+             taller than it is wide (phones, tablet portrait) the vertical
+             stretch is extreme and turns them into a blocky rectangle
+             across the text. Key off aspect ratio, not viewport width. */
+          .dynamic-hero .line-group {
+            display: none;
+          }
+          @media (min-aspect-ratio: 1/1) {
+            .dynamic-hero .line-group {
+              display: block;
+            }
+          }
+
           .dynamic-hero a.dynamic-hero-cta-primary,
           .dynamic-hero a.dynamic-hero-cta-primary:hover {
             color: #0b0b0f;
