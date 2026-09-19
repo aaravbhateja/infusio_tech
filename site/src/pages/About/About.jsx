@@ -15,18 +15,18 @@ export default function About() {
         <Ambient3D variant="page" />
         <div className="wrap">
           <div className="eyebrow">About</div>
-          <h1>Why we started in Jaipur, not with enterprise clients</h1>
-          <p>InfusioTech exists because the businesses walking distance from us are still running on phone calls, paper registers, and word of mouth — while the tools to fix that have gotten cheap and simple enough that they no longer need a big-city agency budget.</p>
+          <h1>Why we build for growing businesses, not just enterprises</h1>
+          <p>InfusioTech exists because growing businesses everywhere are still running on phone calls, paper registers, and word of mouth — while the tools to fix that have gotten cheap and simple enough that they no longer need a big agency budget.</p>
         </div>
       </section>
 
       <section className="section">
         <div className="wrap-narrow">
           <p style={{ fontSize: '17px', color: 'var(--muted)', maxWidth: '64ch' }}>
-            Most agencies chase whichever client pays the most. We're doing the opposite on purpose: starting with local Jaipur businesses — shops, clinics, salons, restaurants, coaching centres — because they're the most underserved, not the least valuable. A shopkeeper who never answers WhatsApp fast enough loses a sale the same way a large company does.
+            Most agencies chase whichever client pays the most. We're doing the opposite on purpose: working with small and growing businesses around the world — shops, clinics, salons, restaurants, coaching centres — because they're the most underserved, not the least valuable. A shopkeeper who never answers WhatsApp fast enough loses a sale the same way a large company does.
           </p>
           <p style={{ fontSize: '17px', color: 'var(--muted)', maxWidth: '64ch', marginTop: '16px' }}>
-            We keep the same standards we'd use on a bigger client — real code, real automation, no shortcuts — and scope it for a local business's reality. As we prove that out in Jaipur, we plan to expand to other cities with the same approach.
+            We keep the same standards we'd use on a bigger client — real code, real automation, no shortcuts — and scope it for a small business's reality. We're based in Jaipur, India, and work with clients remotely, wherever they are.
           </p>
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function About() {
               <span className="tag">Founder &amp; CEO</span>
               <span className="value" style={{ fontSize: '22px', fontFamily: 'Fraunces, serif', color: 'var(--ink)' }}>Aarav Bhateja</span>
               <p style={{ fontSize: '14px', color: 'var(--muted)' }}>
-                Aarav founded InfusioTech to give Jaipur's local businesses the same quality of web, app, and automation work that's usually reserved for large-city clients — built for how a local shop, clinic, or studio actually operates. He works directly with each client from the first call through to launch and support.
+                Aarav founded InfusioTech to give small and growing businesses everywhere the same quality of web, app, and automation work that's usually reserved for large companies — built for how a shop, clinic, or studio actually operates. He works directly with each client from the first call through to launch and support.
               </p>
               <a href="https://www.linkedin.com/in/aaravbhateja" target="_blank" rel="noopener noreferrer" style={{ fontSize: '13.5px' }}>
                 View LinkedIn profile →

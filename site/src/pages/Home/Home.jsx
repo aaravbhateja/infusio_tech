@@ -49,7 +49,7 @@ const SEGMENTS = [
 
 const TICKER_ITEMS = [
   'Now booking Q1 projects',
-  'Jaipur · Full-stack & automation consultancy',
+  'Global · Full-stack & automation consultancy',
   'Free automation audit on WhatsApp',
   '7 services, one point of contact',
 ]
@@ -60,9 +60,9 @@ export default function Home() {
       <Ticker items={TICKER_ITEMS} />
 
       <EditorialHero
-        pills={['Jaipur', 'Full-stack & automation']}
+        pills={['Worldwide', 'Full-stack & automation']}
         title={<>Fully online<br />&amp; <em>automated.</em></>}
-        subtitle="InfusioTech builds the website, the app, and the WhatsApp & calling automations Jaipur's local businesses need to stop losing customers to slow replies."
+        subtitle="InfusioTech builds the website, the app, and the WhatsApp & calling automations growing businesses need to stop losing customers to slow replies."
         primaryCta={{
           label: 'Get a free automation audit',
           href: waLink("Hi InfusioTech, I'd like a free audit"),
@@ -99,7 +99,7 @@ export default function Home() {
         <div className="wrap">
           <Reveal as="div" className="section-head">
             <div className="eyebrow">Who we work with</div>
-            <h2>Built for Jaipur's local businesses first</h2>
+            <h2>Built for growing businesses, anywhere</h2>
             <p>Different businesses need different things — the site and the strategy adjust to which one you are.</p>
           </Reveal>
         </div>

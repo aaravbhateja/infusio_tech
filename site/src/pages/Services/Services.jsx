@@ -32,12 +32,12 @@ const GROUPS = [
       },
       {
         tag: '04', title: 'Calling automation', Icon: PhoneCall,
-        text: 'A missed call is a lost customer in most local businesses. We set up automatic callback texts, IVR flows, and voice-based follow-ups so nobody falls through.',
+        text: 'A missed call is a lost customer in most small businesses. We set up automatic callback texts, IVR flows, and voice-based follow-ups so nobody falls through.',
         bullets: ['Missed-call auto-text & callback', 'IVR / voice menu setup', 'Call logging & follow-up tracking'],
       },
       {
         tag: '05', title: 'WhatsApp automation', Icon: MessageCircle,
-        text: 'Catalog replies, order-taking bots, appointment confirmations, and broadcast campaigns — on the channel Jaipur customers already default to.',
+        text: 'Catalog replies, order-taking bots, appointment confirmations, and broadcast campaigns — on the channel your customers already use.',
         bullets: ['Auto-reply & catalog bots', 'Order & booking flows', 'Broadcast & reminder campaigns'],
       },
     ],

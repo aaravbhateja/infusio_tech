@@ -11,7 +11,7 @@ export default function Footer() {
               <img src={LOGO_MARK} alt="InfusioTech" className="mark" />
               InfusioTech
             </Link>
-            <p>Websites, apps, and automation for local businesses — starting in Jaipur.</p>
+            <p>Websites, apps, and automation for businesses worldwide.</p>
           </div>
           <div>
             <h5>Site</h5>
@@ -30,8 +30,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} InfusioTech, Jaipur</span>
-          <span>Built to grow local businesses first</span>
+          <span>© {new Date().getFullYear()} InfusioTech, Jaipur, India</span>
+          <span>Built to grow businesses worldwide</span>
         </div>
       </div>
     </footer>

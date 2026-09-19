@@ -70,8 +70,8 @@ export default function Contact() {
             <Reveal as="div" className="contact-card" delay={0.15}>
               <div className="contact-icon"><MapPin size={18} strokeWidth={1.75} /></div>
               <span className="tag">Based in</span>
-              <span className="value" style={{ cursor: 'default', fontFamily: 'Fraunces, serif', fontSize: '18px', color: 'var(--ink)' }}>Jaipur, Rajasthan</span>
-              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Serving businesses across the city</p>
+              <span className="value" style={{ cursor: 'default', fontFamily: 'Fraunces, serif', fontSize: '18px', color: 'var(--ink)' }}>Jaipur, India</span>
+              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Working with clients worldwide, remotely</p>
             </Reveal>
           </div>
         </div>
