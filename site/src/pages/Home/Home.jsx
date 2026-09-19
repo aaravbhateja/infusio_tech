@@ -8,6 +8,7 @@ import { Ticker } from '../../components/ui/ticker'
 import { Marquee } from '../../components/ui/marquee'
 import Reveal from '../../components/Reveal/Reveal'
 import { waLink, HERO_BG } from '../../data/site'
+import { CLIENTS, clientLogoSrc } from '../../data/clients'
 
 const SERVICES = [
   {
@@ -113,6 +114,32 @@ export default function Home() {
           ))}
         </Marquee>
       </section>
+
+      {CLIENTS.length > 0 && (
+        <section className="section">
+          <div className="wrap">
+            <Reveal as="div" className="section-head">
+              <div className="eyebrow">Our clients</div>
+              <h2>Trusted by businesses we've built for</h2>
+            </Reveal>
+          </div>
+          <Marquee duration={30}>
+            {CLIENTS.map((c) => {
+              const card = (
+                <>
+                  <img src={clientLogoSrc(c.logo)} alt={c.name} loading="lazy" />
+                  <span>{c.name}</span>
+                </>
+              )
+              return c.url ? (
+                <a className="marquee-card client-card" key={c.name} href={c.url} target="_blank" rel="noopener noreferrer">{card}</a>
+              ) : (
+                <div className="marquee-card client-card" key={c.name}>{card}</div>
+              )
+            })}
+          </Marquee>
+        </section>
+      )}
 
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="wrap">

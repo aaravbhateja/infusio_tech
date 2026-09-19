@@ -48,3 +48,29 @@
   .marquee-track{ animation: none; }
   .marquee{ overflow-x: auto; }
 }
+
+/* Client logo cards: logo tile on top, name underneath. Logos are supplied on
+   light backgrounds, so each sits on its own white rounded tile. */
+.client-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 150px;
+  text-align: center;
+  color: var(--ink);
+  text-decoration: none;
+}
+.client-card img{
+  height: 72px;
+  width: 72px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 12px;
+  padding: 4px;
+}
+.client-card span{
+  font-size: 12.5px;
+  color: var(--muted);
+}
