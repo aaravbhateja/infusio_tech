@@ -6,7 +6,6 @@ import { waLink, LOGO_MARK } from '../../data/site'
 const LINKS = [
   { to: '/', label: 'Home', end: true },
   { to: '/services', label: 'Services' },
-  { to: '/pricing', label: 'Pricing' },
   { to: '/process', label: 'Process' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },

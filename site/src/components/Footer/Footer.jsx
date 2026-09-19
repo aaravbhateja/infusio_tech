@@ -17,7 +17,6 @@ export default function Footer() {
             <h5>Site</h5>
             <ul>
               <li><Link to="/services">Services</Link></li>
-              <li><Link to="/pricing">Pricing</Link></li>
               <li><Link to="/process">Process</Link></li>
             </ul>
           </div>

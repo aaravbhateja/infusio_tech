@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iron Circle Fitness — Jaipur</title>
+<meta name="description" content="Sample gym membership, class schedule and free-trial funnel demo built by InfusioTech.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#FAF9F6; --bg-raised:#FFFFFF; --ink:#191712; --muted:#6C6656; --line:#E7E1D2;
+  --accent:#EA580C; --accent-ink:#fff; --accent-soft:#FDE7D4;
+  --accent2:#16A34A; --accent2-ink:#fff; --accent2-soft:#DCF5E4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --bg-raised:#211E16; --ink:#F5F1E6; --muted:#B7AF98; --line:#332D20;
+    --accent:#FB923C; --accent-ink:#1C1305; --accent-soft:#3A2412;
+    --accent2:#4ADE80; --accent2-ink:#082815; --accent2-soft:#123321;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --bg-raised:#211E16; --ink:#F5F1E6; --muted:#B7AF98; --line:#332D20;
+  --accent:#FB923C; --accent-ink:#1C1305; --accent-soft:#3A2412;
+  --accent2:#4ADE80; --accent2-ink:#082815; --accent2-soft:#123321;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:'Barlow',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0;}
+a{ -webkit-tap-highlight-color:transparent; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+.wrap{max-width:1080px; margin-inline:auto; padding-inline:24px;}
+.demo-banner{background:var(--ink); color:var(--bg); text-align:center; padding:10px 16px; font-size:13px; font-family:'IBM Plex Mono',monospace;}
+.demo-banner a{color:var(--accent);}
+header{padding-block:18px; border-bottom:1px solid var(--line); position:sticky; top:0; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(8px); z-index:5;}
+.nav-row{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+.brand{font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:22px; letter-spacing:.02em; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px;}
+.brand .dot{width:10px; height:10px; border-radius:3px; background:var(--accent); transform:rotate(45deg); flex-shrink:0;}
+nav{display:flex; gap:22px; font-size:14.5px; font-weight:500;}
+nav a{color:var(--ink); text-decoration:none;}
+nav a:hover{color:var(--accent);}
+.enq-btn{background:var(--accent); color:var(--accent-ink); padding:10px 18px; border-radius:8px; font-weight:600; font-size:14px; text-decoration:none; white-space:nowrap; min-height:44px; display:inline-flex; align-items:center; transition:filter .2s ease;}
+.enq-btn:hover{ filter:brightness(1.08); }
+.hero{padding-block:64px 44px; border-bottom:1px solid var(--line); position:relative; overflow:hidden;}
+.hero::before{content:""; position:absolute; top:-60px; right:-60px; width:260px; height:260px; background:var(--accent); opacity:.08; transform:rotate(20deg); border-radius:36px;}
+.hero .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+.hero h1{font-size:clamp(34px,5.2vw,56px); margin-top:14px; line-height:1.05; max-width:16ch;}
+.hero p{color:var(--muted); font-size:17px; max-width:52ch; margin-top:16px; text-transform:none; font-family:'Barlow',sans-serif;}
+.hero-ctas{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:8px; font-weight:600; font-size:15px; text-decoration:none; min-height:44px; transition:transform .15s ease, filter .2s ease;}
+.btn:hover{ transform:translateY(-1px); }
+.btn-accent{background:var(--accent); color:var(--accent-ink);}
+.btn-accent2{background:var(--accent2); color:var(--accent2-ink);}
+.btn-ghost{border:1.5px solid var(--line); color:var(--ink);}
+.stat-row{display:flex; gap:12px; margin-top:34px; flex-wrap:wrap;}
+.stat-chip{border:1px solid var(--line); background:var(--bg-raised); border-radius:10px; padding:12px 18px; min-width:130px;}
+.stat-chip b{display:block; font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800; color:var(--accent);}
+.stat-chip span{font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em;}
+.section{padding-block:54px; border-bottom:1px solid var(--line);}
+.section:last-of-type{border-bottom:none;}
+.section-head{max-width:60ch; margin-bottom:32px;}
+.section-head .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+.section-head h2{font-size:clamp(26px,3.4vw,38px); margin-top:8px;}
+.section-head p{color:var(--muted); font-family:'Barlow',sans-serif; text-transform:none; font-size:15.5px; margin-top:10px;}
+
+.plan-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+.plan-card{background:var(--bg-raised); border:1px solid var(--line); border-radius:16px; padding:26px; display:flex; flex-direction:column; position:relative;}
+.plan-card.popular{border-color:var(--accent); box-shadow:0 0 0 1px var(--accent);}
+.plan-tag{position:absolute; top:-12px; right:20px; background:var(--accent); color:var(--accent-ink); font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600; padding:4px 10px; border-radius:999px; text-transform:uppercase; letter-spacing:.06em;}
+.plan-card h3{font-size:22px;}
+.plan-price{font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:38px; color:var(--accent); margin-top:10px;}
+.plan-price small{font-family:'Barlow',sans-serif; font-weight:500; font-size:13px; color:var(--muted); text-transform:none;}
+.plan-feats{list-style:none; padding:0; margin:18px 0 22px; display:flex; flex-direction:column; gap:9px; font-size:14px; color:var(--ink);}
+.plan-feats li{display:flex; gap:8px; align-items:flex-start;}
+.plan-feats svg{flex-shrink:0; margin-top:3px; color:var(--accent2);}
+.plan-card .btn{margin-top:auto; justify-content:center; width:100%;}
+
+.class-list{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:14px; background:var(--bg-raised); overflow:hidden;}
+.class-row{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 22px; flex-wrap:wrap;}
+.class-row + .class-row{border-top:1px solid var(--line);}
+.class-main{display:flex; align-items:center; gap:14px;}
+.class-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600; padding:5px 9px; border-radius:6px; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap;}
+.tag-hiit{background:var(--accent-soft); color:var(--accent);}
+.tag-strength{background:color-mix(in srgb, var(--ink) 8%, transparent); color:var(--ink);}
+.tag-yoga{background:var(--accent2-soft); color:var(--accent2);}
+.tag-box{background:var(--accent-soft); color:var(--accent);}
+.tag-zumba{background:var(--accent2-soft); color:var(--accent2);}
+.class-row h4{font-size:17px; font-weight:600; font-family:'Barlow',sans-serif; text-transform:none;}
+.class-row p{font-size:13px; color:var(--muted); margin-top:3px;}
+.class-reserve{
+  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  background:color-mix(in srgb, var(--accent2) 12%, transparent); color:var(--accent2);
+  border:1px solid color-mix(in srgb, var(--accent2) 35%, transparent);
+  padding:6px 11px; border-radius:999px; text-decoration:none; white-space:nowrap; min-height:32px; display:inline-flex; align-items:center;
+}
+.class-reserve:hover{ background:var(--accent2); color:var(--accent2-ink); }
+
+.trainer-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+.trainer-card{background:var(--bg-raised); border:1px solid var(--line); border-radius:14px; padding:20px; text-align:center;}
+.trainer-avatar{width:64px; height:64px; border-radius:50%; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:22px;}
+.trainer-card h4{font-size:17px; font-family:'Barlow',sans-serif; font-weight:600; text-transform:none;}
+.trainer-spec{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:.05em; margin-top:6px;}
+.trainer-card p{font-size:13px; color:var(--muted); margin-top:10px;}
+
+.trial-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:start;}
+.form-grid{display:flex; flex-direction:column; gap:14px;}
+.field{display:flex; flex-direction:column; gap:6px;}
+.field label{font-size:13px; font-weight:600; font-family:'Barlow',sans-serif;}
+.field input, .field select{
+  font:inherit; font-size:15px; padding:12px 13px; border-radius:8px; min-height:44px;
+  border:1px solid var(--line); background:var(--bg); color:var(--ink);
+}
+.field input:focus, .field select:focus{ border-color:var(--accent); }
+.perk-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:16px;}
+.perk-list li{display:flex; gap:12px; align-items:flex-start; font-size:15px;}
+.perk-list svg{flex-shrink:0; margin-top:2px; color:var(--accent2);}
+
+.sim-btn{
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:20px;
+  background:var(--accent); color:var(--accent-ink); border:none; cursor:pointer;
+  padding:13px 22px; border-radius:8px; font-weight:600; font-size:15px; font-family:'Barlow',sans-serif; min-height:44px;
+}
+.sim-btn:disabled{ opacity:.6; cursor:default; }
+.drip-panel{background:var(--bg-raised); border:1px solid var(--line); border-radius:14px; padding:22px; max-width:560px;}
+.drip-row{display:flex; gap:10px; padding:10px 0; font-size:14.5px; align-items:flex-start; opacity:.4; transition:opacity .3s ease;}
+.drip-row.active{opacity:1;}
+.drip-row.done .drip-tag{background:var(--accent2); color:var(--accent2-ink);}
+.drip-row + .drip-row{border-top:1px dashed var(--line);}
+.drip-tag{font-family:'IBM Plex Mono',monospace; font-size:11px; background:var(--accent-soft); color:var(--accent); padding:3px 9px; border-radius:999px; flex-shrink:0; transition:background .2s ease, color .2s ease;}
+
+footer{padding-block:32px; text-align:center; color:var(--muted); font-size:13px; font-family:'Barlow',sans-serif;}
+footer a{color:var(--accent);}
+
+@media (max-width:860px){
+  .plan-grid{grid-template-columns:1fr;}
+  .trainer-grid{grid-template-columns:repeat(2,1fr);}
+  .trial-grid{grid-template-columns:1fr;}
+  nav{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  .btn{transition:none;} .btn:hover{transform:none;}
+  .drip-row{transition:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Sample project built by <a href="../portfolio.html">InfusioTech</a> to demonstrate a gym membership &amp; trial-booking funnel — not a live business.</div>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#"><span class="dot"></span> Iron Circle</a>
+    <nav>
+      <a href="#membership">Membership</a>
+      <a href="#classes">Classes</a>
+      <a href="#trainers">Trainers</a>
+      <a href="#trial">Free trial</a>
+    </nav>
+    <a class="enq-btn" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20session" target="_blank" rel="noopener">Book free trial</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Vaishali Nagar, Jaipur</div>
+      <h1>Motivation gets you here once. The system gets you here 200 times.</h1>
+      <p>Strength, HIIT, boxing and yoga under one roof, with a trainer-built plan and a real human checking in when you skip a week — not just an app notification.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="#membership">See membership plans</a>
+        <a class="btn btn-ghost" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20session" target="_blank" rel="noopener">Book a free trial</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat-chip"><b>500+</b><span>Active members</span></div>
+        <div class="stat-chip"><b>12</b><span>Certified trainers</span></div>
+        <div class="stat-chip"><b>18</b><span>Classes / week</span></div>
+        <div class="stat-chip"><b>6am–10pm</b><span>Open daily</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="membership">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Membership plans</div>
+        <h2>Pick a plan, no lock-in contracts</h2>
+        <p>Every plan enquiry opens WhatsApp with the plan pre-filled — a trainer replies with next steps, not a sales script.</p>
+      </div>
+      <div class="plan-grid">
+        <div class="plan-card">
+          <h3>Basic</h3>
+          <div class="plan-price">₹1,499<small>/mo</small></div>
+          <ul class="plan-feats">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Gym floor access, 6am–10pm</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>1 group class / week</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Locker &amp; shower access</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%3A%20Basic%20plan%20(%E2%82%B91%2C499%2Fmo)" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+        </div>
+        <div class="plan-card popular">
+          <span class="plan-tag">Most popular</span>
+          <h3>Pro</h3>
+          <div class="plan-price">₹2,499<small>/mo</small></div>
+          <ul class="plan-feats">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited gym floor access</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited group classes</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>1 trainer check-in / month</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Locker &amp; shower access</li>
+          </ul>
+          <a class="btn btn-accent" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%3A%20Pro%20plan%20(%E2%82%B92%2C499%2Fmo)" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+        </div>
+        <div class="plan-card">
+          <h3>Elite</h3>
+          <div class="plan-price">₹3,999<small>/mo</small></div>
+          <ul class="plan-feats">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Pro</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Weekly 1-on-1 personal training</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom nutrition plan</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%3A%20Elite%20plan%20(%E2%82%B93%2C999%2Fmo)" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="classes">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">This week's schedule</div>
+        <h2>18 classes a week, across 5 formats</h2>
+      </div>
+      <div class="class-list">
+        <div class="class-row">
+          <div class="class-main"><span class="class-tag tag-hiit">HIIT</span><div><h4>HIIT Blast</h4><p>Mon · Wed · Fri, 6:00–7:00am · with Rohit</p></div></div>
+          <a class="class-reserve" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20reserve%20a%20spot%20in%3A%20HIIT%20Blast%20(Mon%2FWed%2FFri%206%3A00am)" target="_blank" rel="noopener">Reserve spot →</a>
+        </div>
+        <div class="class-row">
+          <div class="class-main"><span class="class-tag tag-strength">Strength</span><div><h4>Strength &amp; Conditioning</h4><p>Tue · Thu, 7:00–8:00am · with Rohit</p></div></div>
+          <a class="class-reserve" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20reserve%20a%20spot%20in%3A%20Strength%20%26%20Conditioning%20(Tue%2FThu%207%3A00am)" target="_blank" rel="noopener">Reserve spot →</a>
+        </div>
+        <div class="class-row">
+          <div class="class-main"><span class="class-tag tag-yoga">Yoga</span><div><h4>Power Yoga</h4><p>Daily, 6:00–7:00pm · with Priya</p></div></div>
+          <a class="class-reserve" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20reserve%20a%20spot%20in%3A%20Power%20Yoga%20(Daily%206%3A00pm)" target="_blank" rel="noopener">Reserve spot →</a>
+        </div>
+        <div class="class-row">
+          <div class="class-main"><span class="class-tag tag-box">Boxing</span><div><h4>Boxing Fundamentals</h4><p>Mon · Wed · Fri, 6:00–7:00pm · with Karan</p></div></div>
+          <a class="class-reserve" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20reserve%20a%20spot%20in%3A%20Boxing%20Fundamentals%20(Mon%2FWed%2FFri%206%3A00pm)" target="_blank" rel="noopener">Reserve spot →</a>
+        </div>
+        <div class="class-row">
+          <div class="class-main"><span class="class-tag tag-zumba">Zumba</span><div><h4>Zumba Dance Party</h4><p>Sat, 9:00–10:00am · with Ananya</p></div></div>
+          <a class="class-reserve" href="https://wa.me/910000000006?text=Hi%2C%20I%27d%20like%20to%20reserve%20a%20spot%20in%3A%20Zumba%20Dance%20Party%20(Sat%209%3A00am)" target="_blank" rel="noopener">Reserve spot →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trainers">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Meet the team</div>
+        <h2>Certified trainers, not just spotters</h2>
+      </div>
+      <div class="trainer-grid">
+        <div class="trainer-card">
+          <div class="trainer-avatar" style="background:var(--accent-soft); color:var(--accent);">RS</div>
+          <h4>Rohit Sharma</h4>
+          <div class="trainer-spec">Strength &amp; HIIT</div>
+          <p>8 yrs coaching powerlifting &amp; conditioning.</p>
+        </div>
+        <div class="trainer-card">
+          <div class="trainer-avatar" style="background:var(--accent2-soft); color:var(--accent2);">PM</div>
+          <h4>Priya Malhotra</h4>
+          <div class="trainer-spec">Yoga &amp; Mobility</div>
+          <p>RYT-500 certified, injury-recovery focus.</p>
+        </div>
+        <div class="trainer-card">
+          <div class="trainer-avatar" style="background:var(--accent-soft); color:var(--accent);">KV</div>
+          <h4>Karan Verma</h4>
+          <div class="trainer-spec">Boxing &amp; HIIT</div>
+          <p>Ex-state boxer, 6 yrs training amateurs.</p>
+        </div>
+        <div class="trainer-card">
+          <div class="trainer-avatar" style="background:var(--accent2-soft); color:var(--accent2);">AS</div>
+          <h4>Ananya Singh</h4>
+          <div class="trainer-spec">Nutrition &amp; Zumba</div>
+          <p>Sports nutritionist &amp; group fitness lead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trial">
+    <div class="wrap trial-grid">
+      <div>
+        <div class="section-head">
+          <div class="eyebrow">First session's on us</div>
+          <h2>Book a free trial</h2>
+          <p>Opens WhatsApp with your details filled in — a trainer confirms your slot within the hour.</p>
+        </div>
+        <form class="form-grid" id="trialForm">
+          <div class="field"><label for="tname">Your name</label><input id="tname" required placeholder="e.g. Aditya Rathore"></div>
+          <div class="field"><label for="tgoal">Primary goal</label>
+            <select id="tgoal"><option>Lose fat</option><option>Build muscle</option><option>General fitness</option><option>Sport-specific training</option></select>
+          </div>
+          <div class="field"><label for="ttime">Preferred time</label>
+            <select id="ttime"><option>Morning (6–9am)</option><option>Evening (5–8pm)</option></select>
+          </div>
+          <button class="btn btn-accent2" type="submit" style="align-self:flex-start;">Send request on WhatsApp</button>
+        </form>
+      </div>
+      <div>
+        <ul class="perk-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Full facility tour &amp; equipment orientation</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>One free group class of your choice</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>5-minute goal &amp; fitness-level check-in with a trainer</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No card required, no auto-enrolment</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="followup" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How the follow-up works</div>
+        <h2>A trial that doesn't convert doesn't just vanish</h2>
+      </div>
+      <button class="sim-btn" id="simBtn" type="button">▶ Simulate a trial booking</button>
+      <div class="drip-panel" id="flow">
+        <div class="drip-row"><span class="drip-tag">Day 0</span> Trial confirmed instantly on WhatsApp with address, trainer name &amp; parking info</div>
+        <div class="drip-row"><span class="drip-tag">Day 1</span> "See you today at 6am" reminder, 2 hours before the session</div>
+        <div class="drip-row"><span class="drip-tag">Day 3</span> Trainer checks in: "How did the first session feel?"</div>
+        <div class="drip-row"><span class="drip-tag">Day 7</span> First-month discount offer, with a direct join link</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Iron Circle Fitness — a sample project built by InfusioTech · <a href="../portfolio.html">See more work</a></footer>
+
+<script>
+  var trialForm = document.getElementById('trialForm');
+  trialForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('tname').value.trim();
+    var goal = document.getElementById('tgoal').value;
+    var time = document.getElementById('ttime').value;
+    var text = "Hi, I'm " + name + ". I'd like to book a free trial. Goal: " + goal + '. Preferred time: ' + time + '.';
+    window.open('https://wa.me/910000000006?text=' + encodeURIComponent(text), '_blank');
+  });
+
+  var simBtn = document.getElementById('simBtn');
+  var rows = document.querySelectorAll('#flow .drip-row');
+  simBtn.addEventListener('click', function(){
+    simBtn.disabled = true;
+    simBtn.textContent = 'Running…';
+    rows.forEach(function(r){ r.classList.remove('active','done'); });
+    var i = 0;
+    function step(){
+      if (i > 0) rows[i-1].classList.add('done');
+      if (i < rows.length){
+        rows[i].classList.add('active');
+        i++;
+        setTimeout(step, 800);
+      } else {
+        simBtn.disabled = false;
+        simBtn.textContent = '▶ Simulate a trial booking';
+      }
+    }
+    step();
+  });
+</script>
+
+</body>
+</html>

@@ -7,7 +7,6 @@ import { PageTransition } from './components/ui/page-transition'
 import { ScrollProgress } from './components/ui/scroll-progress'
 import Home from './pages/Home/Home'
 import Services from './pages/Services/Services'
-import Pricing from './pages/Pricing/Pricing'
 import Process from './pages/Process/Process'
 import About from './pages/About/About'
 import Contact from './pages/Contact/Contact'
@@ -15,7 +14,6 @@ import Contact from './pages/Contact/Contact'
 const PAGES = [
   { path: '/', Component: Home },
   { path: '/services', Component: Services },
-  { path: '/pricing', Component: Pricing },
   { path: '/process', Component: Process },
   { path: '/about', Component: About },
   { path: '/contact', Component: Contact },

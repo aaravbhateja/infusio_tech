@@ -101,10 +101,10 @@ export default function Services() {
         <div className="wrap">
           <Reveal as="div" className="cta-band">
             <div>
-              <h3>Want these bundled instead?</h3>
-              <p>See the Starter, Growth, Full Stack, and Custom packages — most businesses start with one of these rather than picking services individually.</p>
+              <h3>Not sure which service fits?</h3>
+              <p>Tell us about your business on a quick call and we'll recommend the smallest setup that solves your problem.</p>
             </div>
-            <Link className="btn btn-accent" to="/pricing">View packages</Link>
+            <Link className="btn btn-accent" to="/contact">Get in touch</Link>
           </Reveal>
         </div>
       </section>

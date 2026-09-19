@@ -3,7 +3,7 @@ import { Ambient3D } from '../../components/ui/ambient-3d'
 import { FOUNDER_PHOTO } from '../../data/site'
 
 const VALUES = [
-  { tag: 'Transparency', title: 'Real prices, real timelines', text: 'No "contact us for pricing" games. You see ranges upfront and a written scope before you pay anything.' },
+  { tag: 'Transparency', title: 'Clear scope, real timelines', text: 'You get a written scope and timeline before you pay anything.' },
   { tag: 'Honesty', title: 'No fake case studies', text: "Our early work is labeled as concept demos until it's real, paid client work — we'd rather be honest than look established." },
   { tag: 'Fit', title: 'Right-sized, not over-sold', text: "If a business only needs a WhatsApp bot, we won't upsell a full app. The smallest thing that solves your problem wins." },
 ]
@@ -26,7 +26,7 @@ export default function About() {
             Most agencies chase whichever client pays the most. We're doing the opposite on purpose: starting with local Jaipur businesses — shops, clinics, salons, restaurants, coaching centres — because they're the most underserved, not the least valuable. A shopkeeper who never answers WhatsApp fast enough loses a sale the same way a large company does.
           </p>
           <p style={{ fontSize: '17px', color: 'var(--muted)', maxWidth: '64ch', marginTop: '16px' }}>
-            We keep the same standards we'd use on a bigger client — real code, real automation, no shortcuts — and price it for a local business's reality. As we prove that out in Jaipur, we plan to expand to other cities with the same approach.
+            We keep the same standards we'd use on a bigger client — real code, real automation, no shortcuts — and scope it for a local business's reality. As we prove that out in Jaipur, we plan to expand to other cities with the same approach.
           </p>
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function About() {
               <span className="tag">Founder &amp; CEO</span>
               <span className="value" style={{ fontSize: '22px', fontFamily: 'Fraunces, serif', color: 'var(--ink)' }}>Aarav Bhateja</span>
               <p style={{ fontSize: '14px', color: 'var(--muted)' }}>
-                Aarav founded InfusioTech to give Jaipur's local businesses the same quality of web, app, and automation work that's usually reserved for large-city clients — built and priced for how a local shop, clinic, or studio actually operates. He works directly with each client from the first call through to launch and support.
+                Aarav founded InfusioTech to give Jaipur's local businesses the same quality of web, app, and automation work that's usually reserved for large-city clients — built for how a local shop, clinic, or studio actually operates. He works directly with each client from the first call through to launch and support.
               </p>
               <a href="https://www.linkedin.com/in/aaravbhateja" target="_blank" rel="noopener noreferrer" style={{ fontSize: '13.5px' }}>
                 View LinkedIn profile →
