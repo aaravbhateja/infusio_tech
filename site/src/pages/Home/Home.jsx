@@ -55,6 +55,13 @@ const TICKER_ITEMS = [
   '7 services, one point of contact',
 ]
 
+// Marquee loops by duplicating its children, so one pass must be wider than the
+// screen or a gap shows at the seam. Repeat a short client list up to 12 cards
+// (~2800px) so it fills even ultrawide monitors.
+const CLIENT_LOOP = CLIENTS.length
+  ? Array.from({ length: Math.ceil(12 / CLIENTS.length) }, () => CLIENTS).flat()
+  : []
+
 export default function Home() {
   return (
     <>
@@ -124,7 +131,7 @@ export default function Home() {
             </Reveal>
           </div>
           <Marquee duration={30}>
-            {CLIENTS.map((c) => {
+            {CLIENT_LOOP.map((c, i) => {
               const card = (
                 <>
                   <img src={clientLogoSrc(c.logo)} alt={c.name} loading="lazy" />
@@ -132,9 +139,9 @@ export default function Home() {
                 </>
               )
               return c.url ? (
-                <a className="marquee-card client-card" key={c.name} href={c.url} target="_blank" rel="noopener noreferrer">{card}</a>
+                <a className="marquee-card client-card" key={i} href={c.url} target="_blank" rel="noopener noreferrer">{card}</a>
               ) : (
-                <div className="marquee-card client-card" key={c.name}>{card}</div>
+                <div className="marquee-card client-card" key={i}>{card}</div>
               )
             })}
           </Marquee>
