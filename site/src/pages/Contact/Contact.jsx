@@ -2,47 +2,66 @@ import { useRef, useState } from 'react'
 import { MessageCircle, Phone, Mail, MapPin } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
 import { Ambient3D } from '../../components/ui/ambient-3d'
-import { PHONE_DISPLAY, PHONE_INTL, EMAIL, waLink } from '../../data/site'
+import { PHONE_DISPLAY, PHONE_INTL, EMAIL, HQ, waLink } from '../../data/site'
+import { PRACTICES } from '../../data/capabilities'
+
+const ENQUIRY_TYPES = [...PRACTICES.map((p) => p.title), 'Dedicated team / staff augmentation', 'Partnership', 'Something else']
 
 export default function Contact() {
-  const [name, setName] = useState('')
-  const [business, setBusiness] = useState('')
-  const [type, setType] = useState('A website')
-  const [message, setMessage] = useState('')
+  const [form, setForm] = useState({ name: '', company: '', email: '', type: ENQUIRY_TYPES[0], message: '' })
   const [touched, setTouched] = useState({})
   const [attempted, setAttempted] = useState(false)
   const errorSummaryRef = useRef(null)
 
   const errors = {
-    name: name.trim() ? null : 'Enter your name',
-    business: business.trim() ? null : 'Enter your business name',
+    name: form.name.trim() ? null : 'Enter your name',
+    company: form.company.trim() ? null : 'Enter your company name',
+    email: !form.email.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim()) ? null : 'Enter a valid email address',
   }
-  const hasErrors = Boolean(errors.name || errors.business)
+  const hasErrors = Object.values(errors).some(Boolean)
+  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
+  const markTouched = (k) => () => setTouched((t) => ({ ...t, [k]: true }))
+  const showError = (k) => (touched[k] || attempted) && errors[k]
 
-  const markTouched = (field) => setTouched((t) => ({ ...t, [field]: true }))
+  const brief = () => [
+    `Name: ${form.name}`, `Company: ${form.company}`, form.email && `Email: ${form.email}`,
+    `Enquiry: ${form.type}`, form.message && `Details: ${form.message}`,
+  ].filter(Boolean).join('\n')
 
-  const submit = (e) => {
+  // Both options open the visitor's own app with the brief pre-filled; nothing is stored on our side.
+  const send = (via) => (e) => {
     e.preventDefault()
     if (hasErrors) {
       setAttempted(true)
-      setTouched({ name: true, business: true })
+      setTouched({ name: true, company: true, email: true })
       errorSummaryRef.current?.focus()
       return
     }
-    const text = `Hi InfusioTech, I'm ${name} from ${business}. I'm looking for: ${type}.${message ? ` ${message}` : ''}`
-    window.open(waLink(text), '_blank', 'noopener,noreferrer')
+    if (via === 'email') {
+      window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Enquiry: ${form.type} - ${form.company}`)}&body=${encodeURIComponent(brief())}`
+    } else {
+      window.open(waLink(`Hi InfusioTech,\n${brief()}`), '_blank', 'noopener,noreferrer')
+    }
   }
 
-  const showError = (field) => (touched[field] || attempted) && errors[field]
+  const field = (k, label, props = {}) => (
+    <div className="field">
+      <label htmlFor={`f-${k}`}>{label}</label>
+      <input id={`f-${k}`} value={form[k]} onChange={set(k)} onBlur={markTouched(k)}
+        aria-invalid={Boolean(showError(k))} aria-describedby={showError(k) ? `f-${k}-error` : undefined}
+        className={showError(k) ? 'has-error' : undefined} {...props} />
+      {showError(k) && <p className="field-error" id={`f-${k}-error`}>{errors[k]}</p>}
+    </div>
+  )
 
   return (
     <>
       <section className="page-header">
         <Ambient3D variant="page" />
         <div className="wrap">
-          <div className="eyebrow">Get in touch</div>
-          <h1>Tell us about your business — free audit included</h1>
-          <p>Fastest way to reach us is WhatsApp. Or fill the short form below and we'll open it pre-filled for you to send.</p>
+          <div className="eyebrow">Contact us</div>
+          <h1>Let's talk about your next project</h1>
+          <p>Share a few details and our solutions team will get back to you with next steps, usually within one business day.</p>
         </div>
       </section>
 
@@ -50,28 +69,28 @@ export default function Contact() {
         <div className="wrap">
           <div className="contact-grid">
             <Reveal as="div" className="contact-card">
-              <div className="contact-icon"><MessageCircle size={18} strokeWidth={1.75} /></div>
-              <span className="tag">WhatsApp</span>
-              <a className="value" href={waLink()} target="_blank" rel="noopener noreferrer">{PHONE_DISPLAY}</a>
-              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Usually replies within a few hours</p>
+              <div className="contact-icon"><Mail size={18} strokeWidth={1.75} /></div>
+              <span className="tag">Business enquiries</span>
+              <a className="value" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Proposals, RFPs and partnerships</p>
             </Reveal>
             <Reveal as="div" className="contact-card" delay={0.05}>
               <div className="contact-icon"><Phone size={18} strokeWidth={1.75} /></div>
-              <span className="tag">Call</span>
+              <span className="tag">Call us</span>
               <a className="value" href={`tel:+${PHONE_INTL}`}>{PHONE_DISPLAY}</a>
               <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Mon–Sat, 10am – 7pm IST</p>
             </Reveal>
             <Reveal as="div" className="contact-card" delay={0.1}>
-              <div className="contact-icon"><Mail size={18} strokeWidth={1.75} /></div>
-              <span className="tag">Email</span>
-              <a className="value" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>For proposals &amp; detailed briefs</p>
+              <div className="contact-icon"><MessageCircle size={18} strokeWidth={1.75} /></div>
+              <span className="tag">WhatsApp</span>
+              <a className="value" href={waLink()} target="_blank" rel="noopener noreferrer">{PHONE_DISPLAY}</a>
+              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Quick questions and follow-ups</p>
             </Reveal>
             <Reveal as="div" className="contact-card" delay={0.15}>
               <div className="contact-icon"><MapPin size={18} strokeWidth={1.75} /></div>
-              <span className="tag">Based in</span>
-              <span className="value" style={{ cursor: 'default', fontFamily: 'Fraunces, serif', fontSize: '18px', color: 'var(--ink)' }}>Jaipur, India</span>
-              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Working with clients worldwide, remotely</p>
+              <span className="tag">Headquarters</span>
+              <span className="value" style={{ cursor: 'default', fontFamily: 'Fraunces, serif', fontSize: '18px', color: 'var(--ink)' }}>{HQ}</span>
+              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Serving clients across India and worldwide</p>
             </Reveal>
           </div>
         </div>
@@ -80,74 +99,38 @@ export default function Contact() {
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="wrap">
           <Reveal as="div" className="section-head">
-            <div className="eyebrow">Quick brief</div>
-            <h2>Send us the basics</h2>
-            <p>This opens WhatsApp with your details pre-filled — nothing is stored or sent anywhere else.</p>
+            <div className="eyebrow">Project enquiry</div>
+            <h2>Tell us what you're looking for</h2>
+            <p>Send your enquiry by email or WhatsApp. It opens with your details filled in, ready to send.</p>
           </Reveal>
 
           {attempted && hasErrors && (
-            <div
-              className="form-error-summary"
-              role="alert"
-              tabIndex={-1}
-              ref={errorSummaryRef}
-              aria-labelledby="error-title"
-            >
+            <div className="form-error-summary" role="alert" tabIndex={-1} ref={errorSummaryRef} aria-labelledby="error-title">
               <h3 id="error-title">There's a problem</h3>
               <ul>
-                {errors.name && <li><a href="#f-name">{errors.name}</a></li>}
-                {errors.business && <li><a href="#f-business">{errors.business}</a></li>}
+                {Object.entries(errors).filter(([, v]) => v).map(([k, v]) => <li key={k}><a href={`#f-${k}`}>{v}</a></li>)}
               </ul>
             </div>
           )}
 
-          <form className="form-grid" onSubmit={submit} noValidate>
+          <form className="form-grid" onSubmit={send('email')} noValidate>
+            {field('name', 'Full name', { placeholder: 'e.g. Rohan Sharma', autoComplete: 'name' })}
+            {field('company', 'Company', { placeholder: 'e.g. Sharma Retail Pvt. Ltd.', autoComplete: 'organization' })}
+            {field('email', 'Work email (optional)', { type: 'email', placeholder: 'you@company.com', autoComplete: 'email' })}
             <div className="field">
-              <label htmlFor="f-name">Your name</label>
-              <input
-                id="f-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                onBlur={() => markTouched('name')}
-                placeholder="e.g. Rohan Sharma"
-                aria-invalid={Boolean(showError('name'))}
-                aria-describedby={showError('name') ? 'f-name-error' : undefined}
-                className={showError('name') ? 'has-error' : undefined}
-              />
-              {showError('name') && <p className="field-error" id="f-name-error">{errors.name}</p>}
-            </div>
-            <div className="field">
-              <label htmlFor="f-business">Business name</label>
-              <input
-                id="f-business"
-                value={business}
-                onChange={(e) => setBusiness(e.target.value)}
-                onBlur={() => markTouched('business')}
-                placeholder="e.g. Sharma Electronics"
-                aria-invalid={Boolean(showError('business'))}
-                aria-describedby={showError('business') ? 'f-business-error' : undefined}
-                className={showError('business') ? 'has-error' : undefined}
-              />
-              {showError('business') && <p className="field-error" id="f-business-error">{errors.business}</p>}
-            </div>
-            <div className="field">
-              <label htmlFor="f-type">What do you need?</label>
-              <select id="f-type" value={type} onChange={(e) => setType(e.target.value)}>
-                <option>A website</option>
-                <option>A mobile app</option>
-                <option>WhatsApp automation</option>
-                <option>Calling automation</option>
-                <option>Social media growth / management</option>
-                <option>Not sure — want a free audit</option>
+              <label htmlFor="f-type">How can we help?</label>
+              <select id="f-type" value={form.type} onChange={set('type')}>
+                {ENQUIRY_TYPES.map((t) => <option key={t}>{t}</option>)}
               </select>
             </div>
             <div className="field">
-              <label htmlFor="f-message">Anything else?</label>
-              <textarea id="f-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="A line or two about your business is enough." />
+              <label htmlFor="f-message">Project details</label>
+              <textarea id="f-message" value={form.message} onChange={set('message')} placeholder="Goals, timelines, current systems: whatever helps us understand the requirement." />
             </div>
-            <button className="btn btn-accent" type="submit" style={{ alignSelf: 'flex-start' }}>
-              Send via WhatsApp
-            </button>
+            <div className="btn-row">
+              <button className="btn btn-accent" type="submit">Send by email</button>
+              <button className="btn btn-ghost" type="button" onClick={send('whatsapp')}>Send via WhatsApp</button>
+            </div>
           </form>
         </div>
       </section>

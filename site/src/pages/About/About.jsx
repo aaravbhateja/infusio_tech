@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
 import { Ambient3D } from '../../components/ui/ambient-3d'
+import { COMPANY, HQ, CAREERS_URL } from '../../data/site'
 
 const VALUES = [
-  { tag: 'Transparency', title: 'Clear scope, real timelines', text: 'You get a written scope and timeline before you pay anything.' },
-  { tag: 'Honesty', title: 'No fake case studies', text: "Our early work is labeled as concept demos until it's real, paid client work — we'd rather be honest than look established." },
-  { tag: 'Fit', title: 'Right-sized, not over-sold', text: "If a business only needs a WhatsApp bot, we won't upsell a full app. The smallest thing that solves your problem wins." },
+  { tag: 'Excellence', title: 'Engineering excellence', text: 'Clean architecture, tested code and documentation that outlasts the project.' },
+  { tag: 'Integrity', title: 'Transparency & integrity', text: 'Written scope, honest timelines and clear reporting at every stage of delivery.' },
+  { tag: 'Ownership', title: 'Client ownership', text: 'We measure success by the business outcomes our clients achieve, not by hours billed.' },
+  { tag: 'Innovation', title: 'Continuous innovation', text: 'We adopt new technology, especially AI, early and responsibly, and bring it to every client.' },
 ]
 
 export default function About() {
@@ -13,28 +17,45 @@ export default function About() {
       <section className="page-header">
         <Ambient3D variant="page" />
         <div className="wrap">
-          <div className="eyebrow">About</div>
-          <h1>Why we build for growing businesses, not just enterprises</h1>
-          <p>InfusioTech exists because growing businesses everywhere are still running on phone calls, paper registers, and word of mouth — while the tools to fix that have gotten cheap and simple enough that they no longer need a big agency budget.</p>
+          <div className="eyebrow">About us</div>
+          <h1>A technology partner for businesses building their digital future</h1>
+          <p>{COMPANY} is a technology services company headquartered in {HQ}, delivering digital engineering, AI and automation, cloud and growth services to clients across India and worldwide.</p>
         </div>
       </section>
 
       <section className="section">
-        <div className="wrap-narrow">
-          <p style={{ fontSize: '17px', color: 'var(--muted)', maxWidth: '64ch' }}>
-            Most agencies chase whichever client pays the most. We're doing the opposite on purpose: working with small and growing businesses around the world — shops, clinics, salons, restaurants, coaching centres — because they're the most underserved, not the least valuable. A shopkeeper who never answers WhatsApp fast enough loses a sale the same way a large company does.
-          </p>
-          <p style={{ fontSize: '17px', color: 'var(--muted)', maxWidth: '64ch', marginTop: '16px' }}>
-            We keep the same standards we'd use on a bigger client — real code, real automation, no shortcuts — and scope it for a small business's reality. We're based in Jaipur, India, and work with clients remotely, wherever they are.
-          </p>
+        <div className="wrap about-split">
+          <Reveal as="div">
+            <div className="eyebrow">Who we are</div>
+            <h2 className="about-h2">Strategy, engineering and growth under one roof</h2>
+          </Reveal>
+          <Reveal as="div" className="about-copy" delay={0.05}>
+            <p>We partner with brands, enterprises and fast-growing companies to design, build and run the platforms their business depends on: web and mobile products, AI-powered automation, customer engagement systems and the cloud infrastructure beneath them.</p>
+            <p>Our teams combine consulting, design, engineering and marketing, so clients get a single accountable partner from the first strategy workshop to long-term support, instead of coordinating several vendors.</p>
+          </Reveal>
         </div>
       </section>
 
-      <section className="section" style={{ borderBottom: 'none' }}>
+      <section className="section">
+        <div className="wrap">
+          <div className="mv-grid">
+            <Reveal as="div" className="mv-card">
+              <div className="tag">Our mission</div>
+              <p>To help every business, from ambitious brands to established enterprises, operate smarter through well-engineered technology and practical AI.</p>
+            </Reveal>
+            <Reveal as="div" className="mv-card" delay={0.05}>
+              <div className="tag">Our vision</div>
+              <p>To be the most trusted technology and AI transformation partner for businesses in India and around the world.</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="wrap">
           <Reveal as="div" className="section-head">
-            <div className="eyebrow">What we stand for</div>
-            <h2>Three things we won't compromise on</h2>
+            <div className="eyebrow">Our values</div>
+            <h2>What guides every engagement</h2>
           </Reveal>
           <Reveal as="div" className="segments">
             {VALUES.map((v) => (
@@ -44,6 +65,31 @@ export default function About() {
                 <p>{v.text}</p>
               </div>
             ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="careers-band">
+            <div>
+              <div className="eyebrow">People & talent</div>
+              <h3>Growing our own engineering talent</h3>
+              <p>Through InfusioTech Careers, we train graduates in spec-driven development with AI, with mentorship from our managers and experience on real industry projects.</p>
+            </div>
+            <a className="btn btn-ghost" href={CAREERS_URL} target="_blank" rel="noopener noreferrer">Visit InfusioTech Careers <ArrowUpRight size={16} /></a>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section" style={{ borderBottom: 'none' }}>
+        <div className="wrap">
+          <Reveal as="div" className="cta-band">
+            <div>
+              <h3>Let's work together</h3>
+              <p>Whether you're launching a new product or modernising operations, we'd like to hear about it.</p>
+            </div>
+            <Link className="btn btn-accent" to="/contact">Contact us <ArrowRight size={16} /></Link>
           </Reveal>
         </div>
       </section>

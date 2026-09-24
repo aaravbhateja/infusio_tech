@@ -65,11 +65,13 @@
 
 .editorial-hero-pills{
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 22px;
 }
 .editorial-hero-pill{
   display: inline-flex;
+  white-space: nowrap;
   align-items: center;
   gap: 6px;
   padding: 7px 14px;

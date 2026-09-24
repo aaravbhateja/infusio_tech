@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
-import { MessageCircle, FileText, Hammer, Rocket, LifeBuoy } from 'lucide-react'
+import { Compass, FileText, PenTool, Hammer, TestTube2, LifeBuoy, ArrowRight } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
 import { Ambient3D } from '../../components/ui/ambient-3d'
 
 const STEPS = [
-  { label: 'Step 1', title: 'Discover', Icon: MessageCircle, text: "A free call or WhatsApp chat about your business — what's slow, what's manual, where you're losing customers. No pitch, just questions." },
-  { label: 'Step 2', title: 'Propose', Icon: FileText, text: 'You get a plain-language proposal: what we\'ll build, what it costs, and how long it takes — before any money changes hands.' },
-  { label: 'Step 3', title: 'Build', Icon: Hammer, text: 'We build in short stages and show you progress along the way, instead of disappearing for weeks and revealing a surprise at the end.' },
-  { label: 'Step 4', title: 'Launch', Icon: Rocket, text: 'Your site, app, or automation goes live. We walk you (or your staff) through how to use it — no separate manual to decode.' },
-  { label: 'Step 5', title: 'Support', Icon: LifeBuoy, text: 'We stay reachable after launch for fixes and small changes, and check in monthly on packages that include ongoing management.' },
+  { label: 'Phase 1', title: 'Discovery & consulting', Icon: Compass, text: 'Workshops with your stakeholders to understand goals, users, current systems and constraints, and to identify where technology delivers the highest return.' },
+  { label: 'Phase 2', title: 'Solution architecture & proposal', Icon: FileText, text: 'A written solution blueprint: architecture, scope, milestones, team, timeline and commercials, agreed before any build work starts.' },
+  { label: 'Phase 3', title: 'Experience design', Icon: PenTool, text: 'User journeys, wireframes and high-fidelity designs validated with you, so everyone signs off on the experience before engineering begins.' },
+  { label: 'Phase 4', title: 'Agile engineering', Icon: Hammer, text: 'Spec-driven, AI-assisted development in short sprints, with a demo at the end of each one and full visibility into progress, risks and decisions.' },
+  { label: 'Phase 5', title: 'Quality assurance & launch', Icon: TestTube2, text: 'Functional, performance and security testing, then a controlled go-live with training and documentation for your teams.' },
+  { label: 'Phase 6', title: 'Support & continuous improvement', Icon: LifeBuoy, text: 'Post-launch support, monitoring and a roadmap of improvements, available as an ongoing managed service.' },
 ]
 
 export default function Process() {
@@ -17,9 +18,9 @@ export default function Process() {
       <section className="page-header">
         <Ambient3D variant="page" />
         <div className="wrap">
-          <div className="eyebrow">How it works</div>
-          <h1>From first message to a live, automated business</h1>
-          <p>No confusing tech jargon, no disappearing after payment. Five steps, and you know what's happening at each one.</p>
+          <div className="eyebrow">Our approach</div>
+          <h1>A proven delivery framework, from first workshop to long-term support</h1>
+          <p>Six phases with clear deliverables, sign-offs and governance at each step, so you always know what's being built, why, and when.</p>
         </div>
       </section>
 
@@ -42,10 +43,10 @@ export default function Process() {
         <div className="wrap">
           <Reveal as="div" className="cta-band">
             <div>
-              <h3>Ready for step one?</h3>
-              <p>Start with a free, no-obligation audit of where your business could automate or get online.</p>
+              <h3>Start with a discovery conversation</h3>
+              <p>Tell us what you want to achieve and we'll outline the approach, team and timeline to get there.</p>
             </div>
-            <Link className="btn btn-accent" to="/contact">Book a free audit</Link>
+            <Link className="btn btn-accent" to="/contact">Schedule a consultation <ArrowRight size={16} /></Link>
           </Reveal>
         </div>
       </section>

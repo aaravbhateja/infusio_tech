@@ -1,58 +1,29 @@
 import { Link } from 'react-router-dom'
-import {
-  Globe, Smartphone, Workflow, PhoneCall, MessageCircle, TrendingUp, Megaphone,
-  Store, HeartPulse, Building2, UtensilsCrossed, ArrowRight,
-} from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ShieldCheck, Layers, Sparkles, Handshake, Globe2, GraduationCap } from 'lucide-react'
 import { EditorialHero } from '../../components/ui/editorial-hero'
 import { Ticker } from '../../components/ui/ticker'
 import { Marquee } from '../../components/ui/marquee'
 import Reveal from '../../components/Reveal/Reveal'
-import { waLink, HERO_BG } from '../../data/site'
+import { HERO_BG, STATS, CAREERS_URL } from '../../data/site'
 import { CLIENTS, clientLogoSrc } from '../../data/clients'
-
-const SERVICES = [
-  {
-    tag: 'Build', title: 'Full-stack websites', Icon: Globe,
-    text: 'Fast, mobile-first business sites — from a 5-page presence to a booking or ordering system.',
-  },
-  {
-    tag: 'Build', title: 'Mobile apps', Icon: Smartphone,
-    text: 'Customer-facing or internal apps for businesses that have outgrown a website alone.',
-  },
-  {
-    tag: 'Automate', title: 'Business automations', Icon: Workflow,
-    text: 'Repetitive workflows — follow-ups, reminders, data entry — handled without a human doing it manually.',
-  },
-  {
-    tag: 'Automate', title: 'Calling automation', Icon: PhoneCall,
-    text: 'Missed-call follow-ups and voice flows so no incoming customer ever hits a dead end.',
-  },
-  {
-    tag: 'Automate', title: 'WhatsApp automation', Icon: MessageCircle,
-    text: 'Catalog replies, order bots, and broadcast flows on the channel your customers already use.',
-  },
-  {
-    tag: 'Grow', title: 'Social growth strategy', Icon: TrendingUp,
-    text: 'A concrete plan for followers and engagement that actually turns into local footfall.',
-  },
-  {
-    tag: 'Grow', title: 'Management & marketing', Icon: Megaphone,
-    text: 'Content calendars, posting, and paid campaigns run for you, week over week.',
-  },
-]
-
-const SEGMENTS = [
-  { tag: 'Retail & D2C', Icon: Store, title: 'Shops & showrooms', text: 'Website + WhatsApp catalog automation + Instagram growth.' },
-  { tag: 'Health & personal care', Icon: HeartPulse, title: 'Clinics, salons, gyms', text: 'Booking automation, missed-call follow-up, local search presence.' },
-  { tag: 'Lead-driven', Icon: Building2, title: 'Real estate, coaching, education', text: 'Lead capture, lightweight CRM automation, social media marketing.' },
-  { tag: 'Food & hospitality', Icon: UtensilsCrossed, title: 'Restaurants & cafés', text: 'WhatsApp ordering automation, menu site, steady social content.' },
-]
+import { PRACTICES, INDUSTRIES, ENGAGEMENT_MODELS } from '../../data/capabilities'
 
 const TICKER_ITEMS = [
-  'Now booking Q1 projects',
-  'Global · Full-stack & automation consultancy',
-  'Free automation audit on WhatsApp',
-  '7 services, one point of contact',
+  'Digital Engineering',
+  'AI & Intelligent Automation',
+  'Conversational & Voice AI',
+  'Cloud, DevOps & Integration',
+  'Digital Growth & Marketing',
+  'Headquartered in Jaipur, India · Delivering worldwide',
+]
+
+const WHY = [
+  { Icon: Layers, title: 'Engineering-first delivery', text: 'Architecture reviews, code standards, automated testing and documented handover, built into every engagement.' },
+  { Icon: Sparkles, title: 'AI-native teams', text: 'Our engineers work spec-first with AI tooling, so you get faster delivery cycles without trading away quality or maintainability.' },
+  { Icon: ShieldCheck, title: 'Security & confidentiality', text: 'Confidentiality agreements, least-privilege access to your systems, and full ownership of the code and IP we build for you.' },
+  { Icon: Handshake, title: 'Accountable governance', text: 'A written scope before work begins, a single accountable delivery lead, and regular sprint demos and status reporting.' },
+  { Icon: Globe2, title: 'Global delivery from India', text: 'India-based delivery with working-hour overlap for clients in India, the Middle East, Europe and beyond.' },
+  { Icon: GraduationCap, title: 'Our own talent pipeline', text: 'InfusioTech Careers trains the next generation of engineers in modern, AI-driven development, feeding our delivery teams.' },
 ]
 
 // Marquee loops by duplicating its children, so one pass must be wider than the
@@ -68,67 +39,19 @@ export default function Home() {
       <Ticker items={TICKER_ITEMS} />
 
       <EditorialHero
-        pills={['Worldwide', 'Full-stack & automation']}
-        title={<>Fully online<br />&amp; <em>automated.</em></>}
-        subtitle="InfusioTech builds the website, the app, and the WhatsApp & calling automations growing businesses need to stop losing customers to slow replies."
-        primaryCta={{
-          label: 'Get a free automation audit',
-          href: waLink("Hi InfusioTech, I'd like a free audit"),
-          external: true,
-        }}
-        secondaryCta={{ label: 'See what we build', href: `${import.meta.env.BASE_URL}services` }}
+        pills={['Digital Engineering', 'AI & Automation', 'Cloud & Growth']}
+        title={<>Engineering what<br />businesses <em>run on.</em></>}
+        subtitle="InfusioTech Solutions is a technology services company delivering digital engineering, AI and intelligent automation, cloud and growth programs for brands and enterprises across India and worldwide."
+        primaryCta={{ label: 'Talk to our experts', href: `${import.meta.env.BASE_URL}contact` }}
+        secondaryCta={{ label: 'Explore our services', href: `${import.meta.env.BASE_URL}services` }}
         backgroundImage={HERO_BG}
-        marqueeWords={['WEBSITES', 'APPS', 'AUTOMATION', 'GROWTH']}
+        marqueeWords={['ENGINEER', 'AUTOMATE', 'SCALE', 'TRANSFORM']}
       />
 
-      <section className="section">
-        <div className="wrap">
-          <Reveal as="div" className="section-head">
-            <div className="eyebrow">What we build</div>
-            <h2>Seven services, one point of contact</h2>
-            <p>No more juggling a web developer, a social media freelancer, and a phone setup separately. Pick a package, or take any service on its own.</p>
-          </Reveal>
-          <div className="services-list">
-            {SERVICES.map((s, i) => (
-              <Reveal as="div" delay={i * 0.04} key={s.title}>
-                <Link to="/services" className="services-list-row" aria-label={`${s.title} — see details on the Services page`}>
-                  <span className="services-list-index">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="services-list-title">{s.title}</span>
-                  <span className="services-list-tag">{s.tag}</span>
-                  <ArrowRight className="services-list-arrow" size={22} strokeWidth={1.75} />
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="wrap">
-          <Reveal as="div" className="section-head">
-            <div className="eyebrow">Who we work with</div>
-            <h2>Built for growing businesses, anywhere</h2>
-            <p>Different businesses need different things — the site and the strategy adjust to which one you are.</p>
-          </Reveal>
-        </div>
-        <Marquee duration={36}>
-          {SEGMENTS.map((s) => (
-            <div className="marquee-card" key={s.title}>
-              <div className="tag">{s.tag}</div>
-              <h4>{s.title}</h4>
-              <p>{s.text}</p>
-            </div>
-          ))}
-        </Marquee>
-      </section>
-
       {CLIENTS.length > 0 && (
-        <section className="section">
+        <section className="section clients-strip">
           <div className="wrap">
-            <Reveal as="div" className="section-head">
-              <div className="eyebrow">Our clients</div>
-              <h2>Trusted by businesses we've built for</h2>
-            </Reveal>
+            <Reveal as="p" className="clients-label">Trusted by growing brands</Reveal>
           </div>
           <Marquee duration={30}>
             {CLIENT_LOOP.map((c, i) => {
@@ -148,16 +71,120 @@ export default function Home() {
         </section>
       )}
 
+      {STATS.length > 0 && (
+        <section className="section">
+          <div className="wrap">
+            <Reveal as="div" className="stats-band">
+              {STATS.map((s) => (
+                <div className="stat" key={s.label}><b>{s.value}</b><span>{s.label}</span></div>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="section-head">
+            <div className="eyebrow">What we do</div>
+            <h2>End-to-end technology services, from strategy to scale</h2>
+            <p>Six service lines that work on their own or as one integrated program, run by a single accountable delivery team.</p>
+          </Reveal>
+          <div className="service-grid">
+            {PRACTICES.map((s, i) => (
+              <Reveal as="div" delay={i * 0.04} key={s.slug}>
+                <Link to={`/services#${s.slug}`} className="service-card">
+                  <div className="icon"><s.Icon size={20} strokeWidth={1.75} /></div>
+                  <span className="tag">{s.tag}</span>
+                  <h3>{s.title}</h3>
+                  <p>{s.short}</p>
+                  <span className="card-link">Learn more <ArrowRight size={14} /></span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="section-head">
+            <div className="eyebrow">Industries</div>
+            <h2>Domain experience across the sectors we serve</h2>
+            <p>Solutions shaped by how each industry sells, operates and serves its customers.</p>
+          </Reveal>
+          <Reveal as="div" className="industry-grid">
+            {INDUSTRIES.map((it) => (
+              <div className="industry" key={it.title}>
+                <div className="segment-icon"><it.Icon size={17} strokeWidth={1.9} /></div>
+                <h4>{it.title}</h4>
+                <p>{it.text}</p>
+              </div>
+            ))}
+          </Reveal>
+          <p className="more-link"><Link to="/industries">View all industries <ArrowRight size={15} /></Link></p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="section-head">
+            <div className="eyebrow">Why InfusioTech</div>
+            <h2>Enterprise-grade standards, agile AI-native delivery</h2>
+          </Reveal>
+          <div className="service-grid">
+            {WHY.map((w, i) => (
+              <Reveal as="div" delay={i * 0.04} key={w.title}>
+                <div className="service-card">
+                  <div className="icon"><w.Icon size={20} strokeWidth={1.75} /></div>
+                  <h3>{w.title}</h3>
+                  <p>{w.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="section-head">
+            <div className="eyebrow">Engagement models</div>
+            <h2>Work with us the way your business needs</h2>
+          </Reveal>
+          <Reveal as="div" className="segments">
+            {ENGAGEMENT_MODELS.map((m) => (
+              <div className="segment" key={m.title}>
+                <div className="tag">{m.tag}</div>
+                <h4>{m.title}</h4>
+                <p>{m.text}</p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="careers-band">
+            <div>
+              <div className="eyebrow">InfusioTech Careers</div>
+              <h3>Building the engineers of tomorrow</h3>
+              <p>Our 3-month Spec-Driven Web Development with AI program trains graduates through lectures, workshops with industry experts and a 1-month internship on live industry projects.</p>
+            </div>
+            <a className="btn btn-ghost" href={CAREERS_URL} target="_blank" rel="noopener noreferrer">Explore careers <ArrowUpRight size={16} /></a>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="wrap">
           <Reveal as="div" className="cta-band">
             <div>
-              <h3>Not sure where to start?</h3>
-              <p>Send us your business on WhatsApp — we'll tell you which one automation or page would help you most, free.</p>
+              <h3>Let's build what's next for your business</h3>
+              <p>Tell us about your goals. A solutions consultant will get back to you with a recommended approach, timeline and estimate.</p>
             </div>
-            <a className="btn btn-accent" href={waLink("Hi InfusioTech, I'd like a free audit")} target="_blank" rel="noopener noreferrer">
-              Message us on WhatsApp
-            </a>
+            <Link className="btn btn-accent" to="/contact">Start a conversation <ArrowRight size={16} /></Link>
           </Reveal>
         </div>
       </section>

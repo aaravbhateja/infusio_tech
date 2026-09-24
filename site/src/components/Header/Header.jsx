@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import { waLink, LOGO_MARK } from '../../data/site'
+import { LOGO_MARK, CAREERS_URL } from '../../data/site'
 
 const LINKS = [
-  { to: '/', label: 'Home', end: true },
   { to: '/services', label: 'Services' },
-  { to: '/process', label: 'Process' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/industries', label: 'Industries' },
+  { to: '/process', label: 'Approach' },
+  { to: '/about', label: 'About us' },
 ]
 
 export default function Header() {
@@ -55,9 +54,12 @@ export default function Header() {
               </NavLink>
             ))}
           </div>
-          <a className="nav-cta" href={waLink("Hi InfusioTech, I'd like to know more")} target="_blank" rel="noopener noreferrer">
-            Chat on WhatsApp
+          <a className="nav-careers" href={CAREERS_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            Careers <span aria-hidden="true">↗</span>
           </a>
+          <Link className="nav-cta" to="/contact" onClick={() => setOpen(false)}>
+            Contact us
+          </Link>
         </nav>
         <button
           className="nav-toggle"
