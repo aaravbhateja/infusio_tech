@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { EMAIL, PHONE_DISPLAY, PHONE_INTL, HQ, COMPANY, CAREERS_URL, LINKEDIN_URL, INSTAGRAM_URL, LOGO_MARK } from '../../data/site'
+import { EMAIL, HQ, COMPANY, CAREERS_URL, LINKEDIN_URL, INSTAGRAM_URL, LOGO_MARK } from '../../data/site'
 import { PRACTICES } from '../../data/capabilities'
 
 export default function Footer() {
@@ -38,7 +38,6 @@ export default function Footer() {
             <h5>Get in touch</h5>
             <ul>
               <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
-              <li><a href={`tel:+${PHONE_INTL}`}>{PHONE_DISPLAY}</a></li>
               <li className="footer-address">{HQ}</li>
             </ul>
           </div>

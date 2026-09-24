@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import WhatsAppFloat from './components/WhatsAppFloat/WhatsAppFloat'
 import { PageTransition } from './components/ui/page-transition'
 import { ScrollProgress } from './components/ui/scroll-progress'
 import Home from './pages/Home/Home'
@@ -53,7 +52,6 @@ export default function App() {
         <AnimatedRoutes />
       </main>
       <Footer />
-      <WhatsAppFloat />
     </>
   )
 }

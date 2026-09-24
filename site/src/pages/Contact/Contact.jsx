@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
-import { MessageCircle, Phone, Mail, MapPin } from 'lucide-react'
+import { Mail, MapPin, Handshake, GraduationCap } from 'lucide-react'
 import Reveal from '../../components/Reveal/Reveal'
 import { Ambient3D } from '../../components/ui/ambient-3d'
-import { PHONE_DISPLAY, PHONE_INTL, EMAIL, HQ, waLink } from '../../data/site'
+import { EMAIL, HQ, CAREERS_URL } from '../../data/site'
 import { PRACTICES } from '../../data/capabilities'
 
 const ENQUIRY_TYPES = [...PRACTICES.map((p) => p.title), 'Dedicated team / staff augmentation', 'Partnership', 'Something else']
@@ -28,8 +28,8 @@ export default function Contact() {
     `Enquiry: ${form.type}`, form.message && `Details: ${form.message}`,
   ].filter(Boolean).join('\n')
 
-  // Both options open the visitor's own app with the brief pre-filled; nothing is stored on our side.
-  const send = (via) => (e) => {
+  // Opens the visitor's email app with the brief pre-filled; nothing is stored on our side.
+  const send = (e) => {
     e.preventDefault()
     if (hasErrors) {
       setAttempted(true)
@@ -37,11 +37,7 @@ export default function Contact() {
       errorSummaryRef.current?.focus()
       return
     }
-    if (via === 'email') {
-      window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Enquiry: ${form.type} - ${form.company}`)}&body=${encodeURIComponent(brief())}`
-    } else {
-      window.open(waLink(`Hi InfusioTech,\n${brief()}`), '_blank', 'noopener,noreferrer')
-    }
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Enquiry: ${form.type} - ${form.company}`)}&body=${encodeURIComponent(brief())}`
   }
 
   const field = (k, label, props = {}) => (
@@ -75,16 +71,16 @@ export default function Contact() {
               <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Proposals, RFPs and partnerships</p>
             </Reveal>
             <Reveal as="div" className="contact-card" delay={0.05}>
-              <div className="contact-icon"><Phone size={18} strokeWidth={1.75} /></div>
-              <span className="tag">Call us</span>
-              <a className="value" href={`tel:+${PHONE_INTL}`}>{PHONE_DISPLAY}</a>
-              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Mon–Sat, 10am – 7pm IST</p>
+              <div className="contact-icon"><Handshake size={18} strokeWidth={1.75} /></div>
+              <span className="tag">Partnerships</span>
+              <a className="value" href={`mailto:${EMAIL}?subject=${encodeURIComponent('Partnership enquiry')}`}>{EMAIL}</a>
+              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Technology, reseller and referral partners</p>
             </Reveal>
             <Reveal as="div" className="contact-card" delay={0.1}>
-              <div className="contact-icon"><MessageCircle size={18} strokeWidth={1.75} /></div>
-              <span className="tag">WhatsApp</span>
-              <a className="value" href={waLink()} target="_blank" rel="noopener noreferrer">{PHONE_DISPLAY}</a>
-              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Quick questions and follow-ups</p>
+              <div className="contact-icon"><GraduationCap size={18} strokeWidth={1.75} /></div>
+              <span className="tag">Careers</span>
+              <a className="value" href={CAREERS_URL} target="_blank" rel="noopener noreferrer">infusiotech.careers</a>
+              <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>Training, internships and open roles</p>
             </Reveal>
             <Reveal as="div" className="contact-card" delay={0.15}>
               <div className="contact-icon"><MapPin size={18} strokeWidth={1.75} /></div>
@@ -101,7 +97,7 @@ export default function Contact() {
           <Reveal as="div" className="section-head">
             <div className="eyebrow">Project enquiry</div>
             <h2>Tell us what you're looking for</h2>
-            <p>Send your enquiry by email or WhatsApp. It opens with your details filled in, ready to send.</p>
+            <p>Submitting opens your email app with your details filled in, ready to send to our team.</p>
           </Reveal>
 
           {attempted && hasErrors && (
@@ -113,7 +109,7 @@ export default function Contact() {
             </div>
           )}
 
-          <form className="form-grid" onSubmit={send('email')} noValidate>
+          <form className="form-grid" onSubmit={send} noValidate>
             {field('name', 'Full name', { placeholder: 'e.g. Rohan Sharma', autoComplete: 'name' })}
             {field('company', 'Company', { placeholder: 'e.g. Sharma Retail Pvt. Ltd.', autoComplete: 'organization' })}
             {field('email', 'Work email (optional)', { type: 'email', placeholder: 'you@company.com', autoComplete: 'email' })}
@@ -127,10 +123,7 @@ export default function Contact() {
               <label htmlFor="f-message">Project details</label>
               <textarea id="f-message" value={form.message} onChange={set('message')} placeholder="Goals, timelines, current systems: whatever helps us understand the requirement." />
             </div>
-            <div className="btn-row">
-              <button className="btn btn-accent" type="submit">Send by email</button>
-              <button className="btn btn-ghost" type="button" onClick={send('whatsapp')}>Send via WhatsApp</button>
-            </div>
+            <button className="btn btn-accent" type="submit" style={{ alignSelf: 'flex-start' }}>Send enquiry</button>
           </form>
         </div>
       </section>
