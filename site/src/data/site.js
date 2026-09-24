@@ -1,6 +1,6 @@
 export const PHONE_DISPLAY = '+91 70110 83740'
 export const PHONE_INTL = '917011083740'
-export const EMAIL = 'infusiotech@gmail.com'
+export const EMAIL = 'contact@infusiotech.com'
 
 // import.meta.env.BASE_URL reflects vite.config.js's `base` (e.g. "/" on the custom domain),
 // so asset paths resolve correctly both in dev and on a GitHub Pages project site.
