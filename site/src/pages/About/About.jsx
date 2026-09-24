@@ -1,6 +1,5 @@
 import Reveal from '../../components/Reveal/Reveal'
 import { Ambient3D } from '../../components/ui/ambient-3d'
-import { FOUNDER_PHOTO } from '../../data/site'
 
 const VALUES = [
   { tag: 'Transparency', title: 'Clear scope, real timelines', text: 'You get a written scope and timeline before you pay anything.' },
@@ -28,36 +27,6 @@ export default function About() {
           <p style={{ fontSize: '17px', color: 'var(--muted)', maxWidth: '64ch', marginTop: '16px' }}>
             We keep the same standards we'd use on a bigger client — real code, real automation, no shortcuts — and scope it for a small business's reality. We're based in Jaipur, India, and work with clients remotely, wherever they are.
           </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="wrap">
-          <Reveal as="div" className="section-head">
-            <div className="eyebrow">Founder</div>
-            <h2>The person behind InfusioTech</h2>
-          </Reveal>
-          <Reveal
-            as="div"
-            className="contact-card"
-            style={{ maxWidth: '520px', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: '24px', padding: '24px' }}
-          >
-            <img
-              src={FOUNDER_PHOTO}
-              alt="Aarav Bhateja"
-              style={{ width: '140px', height: '140px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '2px solid var(--line)' }}
-            />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <span className="tag">Founder &amp; CEO</span>
-              <span className="value" style={{ fontSize: '22px', fontFamily: 'Fraunces, serif', color: 'var(--ink)' }}>Aarav Bhateja</span>
-              <p style={{ fontSize: '14px', color: 'var(--muted)' }}>
-                Aarav founded InfusioTech to give small and growing businesses everywhere the same quality of web, app, and automation work that's usually reserved for large companies — built for how a shop, clinic, or studio actually operates. He works directly with each client from the first call through to launch and support.
-              </p>
-              <a href="https://www.linkedin.com/in/aaravbhateja" target="_blank" rel="noopener noreferrer" style={{ fontSize: '13.5px' }}>
-                View LinkedIn profile →
-              </a>
-            </div>
-          </Reveal>
         </div>
       </section>
 

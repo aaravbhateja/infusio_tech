@@ -5,7 +5,6 @@ export const EMAIL = 'contact@infusiotech.com'
 // import.meta.env.BASE_URL reflects vite.config.js's `base` (e.g. "/" on the custom domain),
 // so asset paths resolve correctly both in dev and on a GitHub Pages project site.
 export const LOGO_MARK = `${import.meta.env.BASE_URL}assets/logo-mark.png`
-export const FOUNDER_PHOTO = `${import.meta.env.BASE_URL}assets/founder.jpg`
 export const HERO_BG = `${import.meta.env.BASE_URL}assets/hero-bg.jpg`
 
 export function waLink(message) {
